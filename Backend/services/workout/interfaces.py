@@ -2,7 +2,13 @@ from abc import ABC, abstractmethod
 from uuid import UUID
 
 from pydantic.main import ModelT
-from Backend.schemas.workout import WorkoutCreate, WorkoutGetAllFilter, WorkoutUpdate
+from Backend.schemas.workout import (
+    WorkoutCreate,
+    WorkoutCreateDTO,
+    WorkoutGetAllFilter,
+    WorkoutGetAllFilterDTO,
+    WorkoutUpdate,
+)
 
 from Backend.core.interfaces.base_repository_interfaces import (
     BaseCreateRepositoryInterface,
@@ -28,11 +34,11 @@ from typing import Sequence, TypeGuard
 
 
 class WorkoutRepositoryInterface(
-    BaseCreateRepositoryInterface[Workout],
+    BaseCreateRepositoryInterface[Workout, WorkoutCreateDTO],
     BaseReadRelationRepositoryInterface[Workout],
-    BaseReadAllRepositoryInterface[Workout, WorkoutGetAllFilter],
-    BaseUpdateRepositoryInterface[Workout],
-    BaseDeleteRepositoryInterface[Workout],
+    BaseReadAllRepositoryInterface[Workout, WorkoutGetAllFilterDTO],
+    BaseUpdateRepositoryInterface[Workout, WorkoutUpdate, int],
+    BaseDeleteRepositoryInterface[Workout, int],
 ):
     pass
 

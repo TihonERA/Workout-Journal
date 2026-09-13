@@ -10,9 +10,9 @@ from sqlalchemy.orm.interfaces import ORMOption
 from Backend.models.base import Base
 
 
-class BaseCreateRepositoryInterface[ModelT: Base](ABC):
+class BaseCreateRepositoryInterface[ModelT: Base, SchemaT: BaseModel](ABC):
     @abstractmethod
-    async def create(self, data: BaseModel) -> ModelT:
+    async def create(self, data: SchemaT) -> ModelT:
         pass
 
 
@@ -49,17 +49,15 @@ class BaseLockRepositoryInterface[ModelT: Base](ABC):
         pass
 
 
-class BaseUpdateRepositoryInterface[ModelT: Base](ABC):
+class BaseUpdateRepositoryInterface[ModelT: Base, SchemaT: BaseModel, IdT: int | UUID](
+    ABC
+):
     @abstractmethod
-    async def get_for_update(self, id: int | UUID) -> ModelT | None:
+    async def update(self, id: IdT, data: SchemaT) -> ModelT | None:
         pass
 
-    @abstractmethod
-    async def update(self, instance: ModelT, data: BaseModel) -> ModelT:
-        pass
 
-
-class BaseDeleteRepositoryInterface[ModelT: Base](ABC):
+class BaseDeleteRepositoryInterface[ModelT: Base, IdT: int | UUID](ABC):
     @abstractmethod
-    async def delete(self, instance: ModelT) -> None:
+    async def delete(self, id: IdT) -> bool:
         pass

@@ -14,14 +14,14 @@ from Backend.models.base import Base
 from Backend.utils.exceptions import DBErrorHandler
 
 
-class BaseCreateRepository[ModelT: Base](
-    BaseRepository[ModelT], BaseCreateRepositoryInterface[ModelT]
+class BaseCreateRepository[ModelT: Base, SchemaT: BaseModel](
+    BaseRepository[ModelT], BaseCreateRepositoryInterface[ModelT, SchemaT]
 ):
     def __init__(self, session: AsyncSession, model: type[ModelT]) -> None:
         self.model = model
         super().__init__(session)
 
-    async def create(self, data: BaseModel) -> ModelT:
+    async def create(self, data: SchemaT) -> ModelT:
         try:
             instance = self.model(**data.model_dump(exclude_unset=True))
             return await self._add_and_refresh_instance(instance)
