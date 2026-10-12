@@ -4,6 +4,9 @@ from uuid import UUID
 from Backend.history_analytics.application.dto.training_day_history import (
     CreateTrainingDayHistoryCommand,
 )
+from Backend.history_analytics.application.ports.training_day_history import (
+    TrainingDayAccessValidator,
+)
 from Backend.history_analytics.domain.training_day_history import TrainingDayHistory
 from Backend.shared.domain.value_objects.entity_title import EntityTitle
 
@@ -12,12 +15,6 @@ class TrainingDayHistoryCreater(Protocol):
     async def create(
         self, training_day_history: TrainingDayHistory
     ) -> TrainingDayHistory: ...
-
-
-class TrainingDayAccessValidator(Protocol):
-    async def ensure_user_has_training_day(
-        self, user_id: UUID, day_id: int
-    ) -> None: ...
 
 
 class CreateTrainingDayHistoryUseCase:
