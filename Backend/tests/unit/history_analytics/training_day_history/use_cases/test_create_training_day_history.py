@@ -12,6 +12,9 @@ import pytest
 from Backend.tests.unit.history_analytics.training_day_history.fake_training_day_history_repository import (
     FakeTrainingDayHistoryRepository,
 )
+from Backend.tests.unit.history_analytics.training_day_history.training_day_history_factories import (
+    TrainingDayHistoryDTOFactory,
+)
 
 
 @pytest.fixture
@@ -22,12 +25,15 @@ def use_case(
 
 
 async def test_create_success(
+    tr_day_history_dto_factory: TrainingDayHistoryDTOFactory,
     use_case: CreateTrainingDayHistoryUseCase,
     fake_tr_day_history_repo: FakeTrainingDayHistoryRepository,
 ) -> None:
     UNBOUNDED = -1
 
-    command = CreateTrainingDayHistoryCommand(day_id=UNBOUNDED, day_name="name")
+    command = tr_day_history_dto_factory.make_training_day_history_create_command(
+        day_id=UNBOUNDED
+    )
 
     training_day_history = await use_case(uuid4(), command)
 
