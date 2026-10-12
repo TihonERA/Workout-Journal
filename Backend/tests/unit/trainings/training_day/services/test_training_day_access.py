@@ -104,11 +104,59 @@ async def test_tr_day_access_denied(
 
     assert workout.id is not None
 
-    training_day = await tr_day_factory.create_tr_day(workout_id=-1)
+    DIFFERENT_WORKOUT = -1
+
+    training_day = await tr_day_factory.create_tr_day(workout_id=DIFFERENT_WORKOUT)
 
     assert training_day.id is not None
 
     with pytest.raises(TrainingDayAccessDenied):
         await access_service.get_authorized_day(
             user_id=workout.user_id, workout_id=workout.id, day_id=training_day.id
+        )
+
+
+async def test_ensure_user_has_access_to_training_day_success(
+    workout_factory: WorkoutFactory,
+    tr_day_factory: TrainingDayFactory,
+    access_service: TrainingDayAccessService,
+) -> None:
+    workout = await workout_factory.create_workout()
+
+    assert workout.id is not None
+
+    training_day = await tr_day_factory.create_tr_day(workout_id=workout.id)
+
+    assert training_day.id is not None
+
+    await access_service.ensure_user_has_training_day(workout.user_id, training_day.id)
+
+
+async def test_ensure_user_has_access_to_training_day_not_found(
+    access_service: TrainingDayAccessService,
+) -> None:
+    NOT_EXISTING_TRAINING_DAY = -1
+
+    with pytest.raises(TrainingDayNotFound):
+        await access_service.ensure_user_has_training_day(
+            user_id=uuid4(), day_id=NOT_EXISTING_TRAINING_DAY
+        )
+
+
+async def test_ensure_user_has_access_to_training_day_access_denied(
+    workout_factory: WorkoutFactory,
+    tr_day_factory: TrainingDayFactory,
+    access_service: TrainingDayAccessService,
+) -> None:
+    workout = await workout_factory.create_workout()
+
+    assert workout.id is not None
+
+    training_day = await tr_day_factory.create_tr_day(workout_id=workout.id)
+
+    assert training_day.id is not None
+
+    with pytest.raises(WorkoutAccessDenied):
+        await access_service.ensure_user_has_training_day(
+            user_id=uuid4(), day_id=training_day.id
         )
