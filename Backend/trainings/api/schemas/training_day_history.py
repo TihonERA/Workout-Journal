@@ -2,11 +2,10 @@ from datetime import datetime
 from enum import StrEnum
 from uuid import UUID
 
+from Backend.schemas.exercise_history import ExerciseHistoryRelalationsResponse
 from pydantic import BaseModel, RootModel
 
-from Backend.schemas.exercise_history import ExerciseHistoryRelalationsResponse
-
-from .base import BaseResponse, OptionalDateTime, OptionalInt, Str100, SkipInt, LimitInt
+from .base import BaseResponse, LimitInt, OptionalDateTime, OptionalInt, SkipInt, Str100
 
 
 class TrainingDayHistoryBase(BaseModel):

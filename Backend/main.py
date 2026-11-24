@@ -1,38 +1,3 @@
-from fastapi import FastAPI, HTTPException, status
-from fastapi.middleware.cors import CORSMiddleware
-
-from Backend.api.handlers import (
-    internal_server_error_handler,
-    invalid_credentials_handler,
-    not_found_handler,
-)
-from Backend.api.v1 import exercise_history, training_day_history
-from Backend.schemas.base import TaskResponse
-from .api.v1 import workout, auth, user, training_day, day_exercise
-from .core.config import settings
-from celery.result import AsyncResult
-from celery import states
-from .utils.exceptions import InternalServerError, InvalidCredentials, NotFound
-import asyncio
+from fastapi import FastAPI
 
 app = FastAPI()
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=settings.ORIGINS,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-app.include_router(workout.router)
-app.include_router(auth.router)
-app.include_router(user.router)
-app.include_router(training_day.router)
-app.include_router(day_exercise.router)
-app.include_router(training_day_history.router)
-app.include_router(exercise_history.router)
-
-app.add_exception_handler(NotFound, not_found_handler)
-app.add_exception_handler(InvalidCredentials, invalid_credentials_handler)
-app.add_exception_handler(InternalServerError, internal_server_error_handler)

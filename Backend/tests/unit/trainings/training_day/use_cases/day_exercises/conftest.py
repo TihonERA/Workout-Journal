@@ -1,5 +1,5 @@
-from faker import Faker
 import pytest
+from faker import Faker
 
 from Backend.tests.unit.trainings.training_day.training_day_factories import (
     DayExerciseDTOFactory,

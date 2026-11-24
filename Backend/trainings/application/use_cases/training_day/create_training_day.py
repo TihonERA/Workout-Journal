@@ -1,11 +1,11 @@
 from typing import Protocol
+
+from Backend.shared.domain.value_objects.entity_title import EntityTitle
 from Backend.trainings.application.dto.training_day import CreateTrainingDayCommand
 from Backend.trainings.application.ports.workout import WorkoutReaderPort
 from Backend.trainings.domain.exceptions.workout_exceptions import WorkoutNotFound
 from Backend.trainings.domain.training_day_model import TrainingDay
 from Backend.trainings.domain.value_objects.day_order import DayOrder
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
-from Backend.trainings.domain.workout_model import Workout
 
 
 class TrainingDayCreator(Protocol):

@@ -1,5 +1,4 @@
 from sqlalchemy import delete
-from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
@@ -35,15 +34,12 @@ class TrainingDayRepository:
         return TrainingDayMapper.to_domain(training_day_model)
 
     async def create(self, training_day: TrainingDay) -> TrainingDay:
-        try:
-            training_day_model = TrainingDayMapper.to_orm(training_day)
+        training_day_model = TrainingDayMapper.to_orm(training_day)
 
-            self.session.add(training_day_model)
-            await self.session.flush()
+        self.session.add(training_day_model)
+        await self.session.flush()
 
-            return TrainingDayMapper.to_domain(training_day_model)
-        except IntegrityError as e:
-            raise NotImplementedError("Integrity")
+        return TrainingDayMapper.to_domain(training_day_model)
 
     @staticmethod
     def _save_exercise(
@@ -72,32 +68,26 @@ class TrainingDayRepository:
         return updated_exercises
 
     async def save(self, training_day: TrainingDay) -> TrainingDay:
-        try:
-            if training_day.id is None:
-                raise TrainingDayNotCreatedError()
+        if training_day.id is None:
+            raise TrainingDayNotCreatedError()
 
-            training_day_model = await self._get_model(training_day.id)
+        training_day_model = await self._get_model(training_day.id)
 
-            if training_day_model is None:
-                raise TrainingDayConcurrencyError(training_day.id)
+        if training_day_model is None:
+            raise TrainingDayConcurrencyError(training_day.id)
 
-            training_day_model.name = training_day.name.value
-            training_day_model.day_order = training_day.day_order.value
-            training_day_model.day_exercises = self._save_exercises(
-                training_day_model.day_exercises, training_day.day_exercises
-            )
+        training_day_model.name = training_day.name.value
+        training_day_model.day_order = training_day.day_order.value
+        training_day_model.day_exercises = self._save_exercises(
+            training_day_model.day_exercises, training_day.day_exercises
+        )
 
-            await self.session.flush()
+        await self.session.flush()
 
-            return TrainingDayMapper.to_domain(training_day_model)
-        except IntegrityError as e:
-            raise NotImplementedError()
+        return TrainingDayMapper.to_domain(training_day_model)
 
     async def delete(self, id: int) -> None:
-        try:
-            stmt = delete(TrainingDayModel).where(TrainingDayModel.id == id)
+        stmt = delete(TrainingDayModel).where(TrainingDayModel.id == id)
 
-            await self.session.execute(stmt)
-            await self.session.flush()
-        except IntegrityError as e:
-            raise NotImplementedError()
+        await self.session.execute(stmt)
+        await self.session.flush()

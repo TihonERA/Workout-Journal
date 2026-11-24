@@ -1,14 +1,11 @@
+from unittest.mock import AsyncMock
 from uuid import uuid4
+
+import pytest
 
 from Backend.history_analytics.application.use_cases.create_training_day_history import (
     CreateTrainingDayHistoryUseCase,
 )
-from Backend.history_analytics.application.dto.training_day_history import (
-    CreateTrainingDayHistoryCommand,
-)
-from unittest.mock import AsyncMock
-import pytest
-
 from Backend.tests.unit.history_analytics.training_day_history.fake_training_day_history_repository import (
     FakeTrainingDayHistoryRepository,
 )

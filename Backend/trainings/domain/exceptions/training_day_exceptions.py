@@ -15,7 +15,7 @@ class TrainingDayOrderError(DomainError):
 
 class TrainingDayAccessDenied(DomainError):
     def __init__(self) -> None:
-        super().__init__(f"Access to this training_day was denied")
+        super().__init__("Access to this training_day was denied")
 
 
 class DayExerciseNotFound(DomainError):

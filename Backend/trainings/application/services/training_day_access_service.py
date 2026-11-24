@@ -2,10 +2,10 @@ from typing import Protocol
 from uuid import UUID
 
 from Backend.trainings.application.ports.workout import WorkoutReaderPort
-from Backend.trainings.domain.exceptions.workout_exceptions import WorkoutNotFound
 from Backend.trainings.domain.exceptions.training_day_exceptions import (
     TrainingDayNotFound,
 )
+from Backend.trainings.domain.exceptions.workout_exceptions import WorkoutNotFound
 from Backend.trainings.domain.training_day_model import TrainingDay
 from Backend.trainings.domain.workout_model import Workout
 

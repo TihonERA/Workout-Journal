@@ -2,7 +2,7 @@ from dataclasses import dataclass
 from datetime import datetime
 from uuid import UUID
 
-from Backend.analytics.domain.sets_history import SetsHistory
+from Backend.history_analytics.domain.sets_history import SetsHistory
 
 
 @dataclass

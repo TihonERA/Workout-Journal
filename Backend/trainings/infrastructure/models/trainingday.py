@@ -1,11 +1,13 @@
-from Backend.shared.infrastructure.base import Base
-from sqlalchemy.orm import Mapped, relationship, mapped_column
-from sqlalchemy import String, ForeignKey, UniqueConstraint
 from typing import TYPE_CHECKING
 
+from sqlalchemy import ForeignKey, String, UniqueConstraint
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from Backend.shared.infrastructure.base import Base
+
 if TYPE_CHECKING:
-    from .workout import WorkoutModel
     from .dayexercise import DayExerciseModel
+    from .workout import WorkoutModel
 
 
 class TrainingDayModel(Base):

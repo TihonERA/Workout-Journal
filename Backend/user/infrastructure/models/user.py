@@ -1,12 +1,13 @@
-from Backend.models.base import Base
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String, Text, text
-from uuid import UUID, uuid4
 from typing import TYPE_CHECKING
+from uuid import UUID, uuid4
+
+from Backend.models.base import Base
+from sqlalchemy import String, Text, text
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 if TYPE_CHECKING:
-    from .workout import Workout
     from .exercise_history import ExerciseHistory
+    from .workout import Workout
 
 class User(Base):
     __tablename__ = "user"

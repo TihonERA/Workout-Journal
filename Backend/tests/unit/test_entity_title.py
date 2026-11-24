@@ -1,9 +1,8 @@
 import pytest
+from faker import Faker
 
 from Backend.shared.domain.exceptions import TitleError
 from Backend.shared.domain.value_objects.entity_title import EntityTitle
-
-from faker import Faker
 
 
 def test_success(faker: Faker) -> None:

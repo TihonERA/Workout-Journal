@@ -1,10 +1,8 @@
-from enum import StrEnum
-
-from pydantic import BaseModel, Field
 
 from typing import Annotated
 
-from Backend.schemas.base import Str100, BaseResponse
+from Backend.schemas.base import BaseResponse, Str100
+from pydantic import BaseModel, Field
 
 from .day_exercise import DayExerciseResponse
 

@@ -1,8 +1,7 @@
-from pydantic import BaseModel, Field
-
 from typing import Annotated
 
 from Backend.schemas.base import BaseResponse
+from pydantic import BaseModel, Field
 
 ExerciseOrderInt = Annotated[int, Field(gt=0, le=50)]
 SetsInt = Annotated[int, Field(gt=0, le=30)]

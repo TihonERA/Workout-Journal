@@ -1,6 +1,7 @@
+from copy import copy
+
 from Backend.trainings.application.dto.workout import WorkoutDetailDTO
 from Backend.trainings.domain.workout_model import Workout
-from copy import copy
 
 
 class FakeWorkoutRepository:

@@ -1,4 +1,3 @@
-from datetime import datetime
 
 from sqlalchemy import delete
 from sqlalchemy.exc import IntegrityError
@@ -39,8 +38,8 @@ class TrainingDayHistoryRepository:
             await self.session.flush()
 
             return TrainingDayHistoryMapper.to_domain(training_day_history_model)
-        except IntegrityError as e:
-            raise NotImplemented("assHOLE")
+        except IntegrityError:
+            raise NotImplementedError("assHOLE")
 
     async def delete(self, id: int) -> None:
         try:
@@ -50,5 +49,5 @@ class TrainingDayHistoryRepository:
 
             await self.session.execute(stmt)
             await self.session.flush()
-        except IntegrityError as e:
-            raise NotImplemented("pe")
+        except IntegrityError:
+            raise NotImplementedError("pe")

@@ -1,8 +1,6 @@
-from random import randint
-from typing import Awaitable, Callable
 
-from faker import Faker
 import pytest
+from faker import Faker
 
 from Backend.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
 from Backend.tests.unit.trainings.training_day.fake_training_day_repository import (
@@ -12,12 +10,9 @@ from Backend.tests.unit.trainings.training_day.training_day_factories import (
     TrainingDayDTOFactory,
     TrainingDayFactory,
 )
-from Backend.tests.unit.trainings.workout_factories import WorkoutFactory
 from Backend.trainings.application.services.training_day_access_service import (
     TrainingDayAccessService,
 )
-from Backend.trainings.domain.training_day_model import TrainingDay
-from Backend.trainings.domain.value_objects.day_order import DayOrder
 
 
 @pytest.fixture

@@ -2,14 +2,14 @@ from datetime import datetime
 from typing import TYPE_CHECKING
 from uuid import UUID
 
-from sqlalchemy import Float, ForeignKey, func
+from sqlalchemy import ForeignKey, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from Backend.shared.infrastructure.base import Base
 
 if TYPE_CHECKING:
-    from .training_day_history import TrainingDayHistoryModel
     from .sets_history import SetsHistory
+    from .training_day_history import TrainingDayHistoryModel
 
 
 class ExerciseHistoryModel(Base):

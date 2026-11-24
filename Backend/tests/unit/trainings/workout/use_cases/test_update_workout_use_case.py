@@ -1,4 +1,3 @@
-from typing import Any
 from uuid import uuid4
 
 import pytest
@@ -15,7 +14,6 @@ from Backend.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
     WorkoutNotFound,
 )
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
 
 
 @pytest.fixture

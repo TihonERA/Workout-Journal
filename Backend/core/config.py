@@ -1,6 +1,8 @@
-from pydantic import Field
-from pydantic_settings import BaseSettings, SettingsConfigDict
+from functools import lru_cache
 from pathlib import Path
+
+from pydantic import Field, PostgresDsn, computed_field
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 CURRENT_DIR = Path(__file__).resolve().parent
 PROJECT_ROOT = CURRENT_DIR.parent.parent
@@ -8,24 +10,27 @@ ENV_FILE_PATH = PROJECT_ROOT / ".env"
 
 
 class Settings(BaseSettings):
-    DB_HOST: str = Field(default=...)
-    DB_PORT: int = Field(default=...)
-    DB_USER: str = Field(default=...)
-    DB_PASS: str = Field(default=...)
-    DB_NAME: str = Field(default=...)
-    SECRET_KEY: str = Field(default=...)
-    ALGORITHM: str = Field(default=...)
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = Field(default=...)
-    REFRESH_TOKEN_EXPIRE_DAYS: int = Field(default=...)
-    ORIGINS: list[str] = Field(default=...)
+    POSTGRES_HOST: str = Field(default=...)
+    POSTGRES_PORT: int = Field(default=...)
+    POSTGRES_USER: str = Field(default=...)
+    POSTGRES_PASS: str = Field(default=...)
+    POSTGRES_NAME: str = Field(default=...)
 
+    @computed_field
     @property
-    def DATABASE_URL_asyncpg(self):
-        return f"postgresql+asyncpg://{self.DB_USER}:{self.DB_PASS}@{self.DB_HOST}:{self.DB_PORT}/{self.DB_NAME}"
+    def DATABASE_URL_asyncpg(self) -> PostgresDsn:
+        return PostgresDsn.build(
+            scheme="postgresql+asyncpg",
+            host=self.POSTGRES_HOST,
+            port=self.POSTGRES_PORT,
+            username=self.POSTGRES_USER,
+            password=self.POSTGRES_PASS,
+            path=self.POSTGRES_NAME,
+        )
 
-    model_config = SettingsConfigDict(
-        env_file=ENV_FILE_PATH, env_file_encoding="utf-8", extra="ignore"
-    )
+    model_config = SettingsConfigDict(env_file=ENV_FILE_PATH, env_file_encoding="utf-8")
 
 
-settings = Settings()
+@lru_cache
+def get_settings() -> Settings:
+    return Settings()

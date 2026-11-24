@@ -1,17 +1,13 @@
 from uuid import UUID, uuid4
-import uuid
-
-import pytest
 
 from faker import Faker
 
+from Backend.shared.domain.value_objects.entity_title import EntityTitle
 from Backend.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
 from Backend.trainings.application.dto.workout import (
     CreateWorkoutCommand,
     UpdateWorkoutCommand,
 )
-from Backend.trainings.domain.training_day_model import TrainingDay
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
 from Backend.trainings.domain.workout_model import Workout
 
 

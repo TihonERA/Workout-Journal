@@ -1,6 +1,14 @@
+from sqlalchemy import Enum, String, Text
+from sqlalchemy.orm import Mapped, mapped_column
+
 from Backend.shared.infrastructure.base import Base
-from sqlalchemy.orm import Mapped, relationship, mapped_column
-from sqlalchemy import String, Text, JSON
+
+
+class TypeOfExercises(Enum):
+    CARDIO = "cardio"
+    STRENGTH = "strength"
+    FLEXIBILITY = "flexibility"
+    STABILITY = "stability"
 
 
 class Exercise(Base):
@@ -9,5 +17,6 @@ class Exercise(Base):
     id: Mapped[int] = mapped_column(primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String(100), index=True, nullable=False)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
-    gif_url: Mapped[str | None] = mapped_column(Text, nullable=True)
-    muscle_activation: Mapped[dict] = mapped_column(JSON, default=dict, nullable=False)
+    type: Mapped[TypeOfExercises] = mapped_column(
+        Enum(TypeOfExercises, name="type_of_exercises", nullable=False)
+    )

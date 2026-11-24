@@ -9,7 +9,6 @@ from Backend.tests.unit.trainings.training_day.helpers import get_exercise_id_or
 from Backend.trainings.domain.exceptions.training_day_exceptions import (
     DayExerciseOrderIntegrityError,
 )
-from Backend.trainings.domain.training_day_model import TrainingDay
 
 
 def test_add_exercise_success() -> None:

@@ -1,9 +1,6 @@
 from dataclasses import dataclass
 from uuid import UUID
 
-from Backend.trainings.domain.value_objects.day_order import DayOrder
-from Backend.trainings.domain.value_objects.exercise_order import ExerciseOrder
-
 
 @dataclass(frozen=True)
 class CreateTrainingDayCommand:

@@ -1,18 +1,12 @@
-from typing import Callable
 from uuid import uuid4
 
 import pytest
 
-from Backend.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
-from Backend.tests.unit.trainings.training_day.fake_training_day_repository import (
-    FakeTrainingDayRepository,
-)
 from Backend.tests.unit.trainings.training_day.helpers import assert_same_tr_days
 from Backend.tests.unit.trainings.training_day.training_day_factories import (
     TrainingDayFactory,
 )
 from Backend.tests.unit.trainings.workout_factories import WorkoutFactory
-from Backend.trainings.application.dto import training_day
 from Backend.trainings.application.services.training_day_access_service import (
     TrainingDayAccessService,
 )

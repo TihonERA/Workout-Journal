@@ -1,11 +1,9 @@
 from typing import Protocol
+from uuid import UUID
 
 from Backend.trainings.domain.exceptions.workout_exceptions import (
     WorkoutNotFound,
 )
-
-from uuid import UUID
-
 from Backend.trainings.domain.workout_model import Workout
 
 

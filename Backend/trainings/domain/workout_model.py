@@ -1,11 +1,10 @@
 from dataclasses import dataclass
-from typing import Any
 from uuid import UUID
 
+from Backend.shared.domain.value_objects.entity_title import EntityTitle
 from Backend.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
 )
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
 
 
 @dataclass

@@ -6,7 +6,7 @@ from datetime import datetime
 class SetsHistory:
     id: int
     exercise_history_id: int
-    sset: int | None
+    set: int | None
     reps: int | None
     weight: float | None
     time_for_set: datetime | None

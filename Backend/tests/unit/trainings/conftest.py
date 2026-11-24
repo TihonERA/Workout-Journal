@@ -1,11 +1,9 @@
-from typing import Awaitable, Callable
-from uuid import uuid4
 
-from faker import Faker
 import pytest
+from faker import Faker
+
 from Backend.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
 from Backend.tests.unit.trainings.workout_factories import WorkoutFactory
-from Backend.trainings.domain.workout_model import Workout
 
 
 @pytest.fixture

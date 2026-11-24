@@ -1,8 +1,7 @@
+from datetime import datetime
 from typing import TYPE_CHECKING
 
-from datetime import datetime
-
-from sqlalchemy import ForeignKey, String, column, func
+from sqlalchemy import ForeignKey, String, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from Backend.shared.infrastructure.base import Base

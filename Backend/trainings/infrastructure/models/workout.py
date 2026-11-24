@@ -1,8 +1,10 @@
-from Backend.shared.infrastructure.base import Base
-from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import String, Float, Text, ForeignKey
-from uuid import UUID
 from typing import TYPE_CHECKING
+from uuid import UUID
+
+from sqlalchemy import ForeignKey, String, Text
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from Backend.shared.infrastructure.base import Base
 
 if TYPE_CHECKING:
     from .trainingday import TrainingDayModel

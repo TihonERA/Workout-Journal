@@ -10,4 +10,4 @@ class WorkoutNotFound(DomainError):
 
 class WorkoutAccessDenied(DomainError):
     def __init__(self) -> None:
-        super().__init__(f"Access to this workout was denied")
+        super().__init__("Access to this workout was denied")

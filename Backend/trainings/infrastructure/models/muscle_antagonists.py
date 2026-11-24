@@ -1,7 +1,9 @@
 from typing import TYPE_CHECKING
-from Backend.shared.infrastructure.base import Base
+
 from sqlalchemy import ForeignKey
-from sqlalchemy.orm import Mapped, relationship, mapped_column
+from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from Backend.shared.infrastructure.base import Base
 
 if TYPE_CHECKING:
     from .muscle import Muscle

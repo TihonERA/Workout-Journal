@@ -1,21 +1,19 @@
-import enum
 from random import randint
 from uuid import UUID
 
 from faker import Faker
 
+from Backend.shared.domain.value_objects.entity_title import EntityTitle
 from Backend.tests.unit.trainings.training_day.fake_training_day_repository import (
     FakeTrainingDayRepository,
 )
 from Backend.tests.unit.trainings.training_day.helpers import create_day_exercises
-from Backend.tests.unit.trainings.workout_factories import WorkoutFactory
 from Backend.trainings.application.dto.training_day import (
     CreateDayExerciseCommand,
     CreateTrainingDayCommand,
 )
 from Backend.trainings.domain.training_day_model import TrainingDay
 from Backend.trainings.domain.value_objects.day_order import DayOrder
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
 
 
 class TrainingDayDTOFactory:

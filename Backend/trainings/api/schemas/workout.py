@@ -1,16 +1,10 @@
-from pydantic import BaseModel, Field, RootModel
-
-from Backend.utils.exceptions import Forbidden
-from .base import StrText, Str100, BaseResponse, SkipInt, LimitInt
-
-from .training_day import TrainingDayRelataionsResponse
-
 from enum import StrEnum
-
-from pydantic import model_validator
-
 from uuid import UUID
-from typing import Annotated
+
+from pydantic import BaseModel, RootModel
+
+from .base import BaseResponse, LimitInt, SkipInt, Str100, StrText
+from .training_day import TrainingDayRelataionsResponse
 
 
 class WorkoutBase(BaseModel):

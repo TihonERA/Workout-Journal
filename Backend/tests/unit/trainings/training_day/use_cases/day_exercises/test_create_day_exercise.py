@@ -1,15 +1,11 @@
 import pytest
 
-from Backend.tests.unit.trainings.training_day.conftest import (
-    tr_day_repo,
-)
 from Backend.tests.unit.trainings.training_day.fake_training_day_repository import (
     FakeTrainingDayRepository,
 )
 from Backend.tests.unit.trainings.training_day.helpers import assert_same_tr_days
 from Backend.tests.unit.trainings.training_day.training_day_factories import (
     DayExerciseDTOFactory,
-    TrainingDayDTOFactory,
     TrainingDayFactory,
 )
 from Backend.tests.unit.trainings.workout_factories import WorkoutFactory
@@ -22,7 +18,6 @@ from Backend.trainings.application.use_cases.training_day.create_day_exercise im
 from Backend.trainings.domain.exceptions.training_day_exceptions import (
     TrainingDayAccessDenied,
 )
-from Backend.trainings.domain.training_day_model import TrainingDay
 
 
 @pytest.fixture
