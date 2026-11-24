@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Backend.shared.domain.exceptions import TitleError
+from src.shared.domain.exceptions import TitleError
 
 
 @dataclass(frozen=True)

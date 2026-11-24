@@ -1,12 +1,12 @@
 
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
-from Backend.trainings.application.dto.training_day import UpdateTrainingDayCommand
-from Backend.trainings.application.ports.training_day import (
+from src.shared.domain.value_objects.entity_title import EntityTitle
+from src.trainings.application.dto.training_day import UpdateTrainingDayCommand
+from src.trainings.application.ports.training_day import (
     TrainingDayAccessServicePort,
     TrainingDayRepositoryPort,
 )
-from Backend.trainings.domain.training_day_model import TrainingDay
-from Backend.trainings.domain.value_objects.day_order import DayOrder
+from src.trainings.domain.training_day_model import TrainingDay
+from src.trainings.domain.value_objects.day_order import DayOrder
 
 
 class UpdateTrainingDay:

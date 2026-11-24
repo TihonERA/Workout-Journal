@@ -1,14 +1,14 @@
 from typing import Protocol
 from uuid import UUID
 
-from Backend.history_analytics.application.ports.training_day_history import (
+from src.history_analytics.application.ports.training_day_history import (
     TrainingDayAccessValidator,
 )
-from Backend.history_analytics.domain.exceptions.training_day_history import (
+from src.history_analytics.domain.exceptions.training_day_history import (
     TrainingDayHistoryAccessDenied,
     TrainingDayHistoryNotFound,
 )
-from Backend.history_analytics.domain.training_day_history import TrainingDayHistory
+from src.history_analytics.domain.training_day_history import TrainingDayHistory
 
 
 class TrainingDayHistoryDeleter(Protocol):

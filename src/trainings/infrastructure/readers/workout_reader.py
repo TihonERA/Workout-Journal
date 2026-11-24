@@ -1,9 +1,9 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from Backend.trainings.application.dto.workout import WorkoutDetailDTO, WorkoutReadDTO
-from Backend.trainings.infrastructure.mappers.workout_mapper import WorkoutMapper
-from Backend.trainings.infrastructure.models.workout import WorkoutModel
+from src.trainings.application.dto.workout import WorkoutDetailDTO, WorkoutReadDTO
+from src.trainings.infrastructure.mappers.workout_mapper import WorkoutMapper
+from src.trainings.infrastructure.models.workout import WorkoutModel
 
 
 class WorkoutReader:

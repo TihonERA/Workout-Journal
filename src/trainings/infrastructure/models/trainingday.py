@@ -3,7 +3,7 @@ from typing import TYPE_CHECKING
 from sqlalchemy import ForeignKey, String, UniqueConstraint
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from Backend.shared.infrastructure.base import Base
+from src.shared.infrastructure.base import Base
 
 if TYPE_CHECKING:
     from .dayexercise import DayExerciseModel

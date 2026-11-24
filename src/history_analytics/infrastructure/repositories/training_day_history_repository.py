@@ -3,11 +3,11 @@ from sqlalchemy import delete
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from Backend.history_analytics.domain.training_day_history import TrainingDayHistory
-from Backend.history_analytics.infrastructure.mappers.training_day_history_mapper import (
+from src.history_analytics.domain.training_day_history import TrainingDayHistory
+from src.history_analytics.infrastructure.mappers.training_day_history_mapper import (
     TrainingDayHistoryMapper,
 )
-from Backend.history_analytics.infrastructure.models.training_day_history import (
+from src.history_analytics.infrastructure.models.training_day_history import (
     TrainingDayHistoryModel,
 )
 

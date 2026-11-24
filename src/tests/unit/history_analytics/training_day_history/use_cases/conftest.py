@@ -1,7 +1,7 @@
 import pytest
 from faker import Faker
 
-from Backend.tests.unit.history_analytics.training_day_history.training_day_history_factories import (
+from src.tests.unit.history_analytics.training_day_history.training_day_history_factories import (
     TrainingDayHistoryDTOFactory,
 )
 

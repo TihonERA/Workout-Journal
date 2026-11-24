@@ -1,11 +1,11 @@
 from typing import Protocol
 
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
-from Backend.trainings.application.dto.workout import UpdateWorkoutCommand
-from Backend.trainings.domain.exceptions.workout_exceptions import (
+from src.shared.domain.value_objects.entity_title import EntityTitle
+from src.trainings.application.dto.workout import UpdateWorkoutCommand
+from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutNotFound,
 )
-from Backend.trainings.domain.workout_model import Workout
+from src.trainings.domain.workout_model import Workout
 
 
 class WorkoutUpdater(Protocol):

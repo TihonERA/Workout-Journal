@@ -2,18 +2,18 @@ from uuid import uuid4
 
 import pytest
 
-from Backend.tests.unit.trainings.conftest import WorkoutFactory
-from Backend.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
-from Backend.tests.unit.trainings.training_day.fake_training_day_repository import (
+from src.tests.unit.trainings.conftest import WorkoutFactory
+from src.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
+from src.tests.unit.trainings.training_day.fake_training_day_repository import (
     FakeTrainingDayRepository,
 )
-from Backend.tests.unit.trainings.training_day.training_day_factories import (
+from src.tests.unit.trainings.training_day.training_day_factories import (
     TrainingDayDTOFactory,
 )
-from Backend.trainings.application.use_cases.training_day.create_training_day import (
+from src.trainings.application.use_cases.training_day.create_training_day import (
     CreateTrainingDayUseCase,
 )
-from Backend.trainings.domain.exceptions.workout_exceptions import (
+from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
     WorkoutNotFound,
 )

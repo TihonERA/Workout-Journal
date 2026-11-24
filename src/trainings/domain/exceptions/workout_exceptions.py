@@ -1,4 +1,4 @@
-from Backend.shared.domain.exceptions import DomainError
+from src.shared.domain.exceptions import DomainError
 
 
 class WorkoutNotFound(DomainError):

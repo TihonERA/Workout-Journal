@@ -1,16 +1,16 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from Backend.history_analytics.application.dto.training_day_history import (
+from src.history_analytics.application.dto.training_day_history import (
     TrainingDayHistoryDetailDTO,
 )
-from Backend.history_analytics.infrastructure.mappers.training_day_history_mapper import (
+from src.history_analytics.infrastructure.mappers.training_day_history_mapper import (
     TrainingDayHistoryMapper,
 )
-from Backend.history_analytics.infrastructure.models.exercise_history import (
+from src.history_analytics.infrastructure.models.exercise_history import (
     ExerciseHistoryModel,
 )
-from Backend.history_analytics.infrastructure.models.training_day_history import (
+from src.history_analytics.infrastructure.models.training_day_history import (
     TrainingDayHistoryModel,
 )
 

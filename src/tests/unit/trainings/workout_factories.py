@@ -2,13 +2,13 @@ from uuid import UUID, uuid4
 
 from faker import Faker
 
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
-from Backend.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
-from Backend.trainings.application.dto.workout import (
+from src.shared.domain.value_objects.entity_title import EntityTitle
+from src.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
+from src.trainings.application.dto.workout import (
     CreateWorkoutCommand,
     UpdateWorkoutCommand,
 )
-from Backend.trainings.domain.workout_model import Workout
+from src.trainings.domain.workout_model import Workout
 
 
 class WorkoutDTOFactory:

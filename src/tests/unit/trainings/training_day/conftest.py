@@ -2,15 +2,15 @@
 import pytest
 from faker import Faker
 
-from Backend.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
-from Backend.tests.unit.trainings.training_day.fake_training_day_repository import (
+from src.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
+from src.tests.unit.trainings.training_day.fake_training_day_repository import (
     FakeTrainingDayRepository,
 )
-from Backend.tests.unit.trainings.training_day.training_day_factories import (
+from src.tests.unit.trainings.training_day.training_day_factories import (
     TrainingDayDTOFactory,
     TrainingDayFactory,
 )
-from Backend.trainings.application.services.training_day_access_service import (
+from src.trainings.application.services.training_day_access_service import (
     TrainingDayAccessService,
 )
 

@@ -1,9 +1,9 @@
 from sqlalchemy import delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from Backend.trainings.domain.workout_model import Workout
-from Backend.trainings.infrastructure.mappers.workout_mapper import WorkoutMapper
-from Backend.trainings.infrastructure.models.workout import WorkoutModel
+from src.trainings.domain.workout_model import Workout
+from src.trainings.infrastructure.mappers.workout_mapper import WorkoutMapper
+from src.trainings.infrastructure.models.workout import WorkoutModel
 
 
 class WorkoutRepository:

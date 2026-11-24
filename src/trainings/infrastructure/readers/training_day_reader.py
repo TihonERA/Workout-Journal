@@ -2,11 +2,11 @@
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from Backend.trainings.application.dto.training_day import TrainingDayDetailDTO
-from Backend.trainings.infrastructure.mappers.training_day_mapper import (
+from src.trainings.application.dto.training_day import TrainingDayDetailDTO
+from src.trainings.infrastructure.mappers.training_day_mapper import (
     TrainingDayMapper,
 )
-from Backend.trainings.infrastructure.models.trainingday import TrainingDayModel
+from src.trainings.infrastructure.models.trainingday import TrainingDayModel
 
 
 class TrainingDayReader:

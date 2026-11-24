@@ -2,17 +2,17 @@ from sqlalchemy import delete
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from Backend.trainings.application.exceptions.training_day import (
+from src.trainings.application.exceptions.training_day import (
     TrainingDayConcurrencyError,
     TrainingDayNotCreatedError,
 )
-from Backend.trainings.domain.day_exercise_model import DayExercise
-from Backend.trainings.domain.training_day_model import TrainingDay
-from Backend.trainings.infrastructure.mappers.training_day_mapper import (
+from src.trainings.domain.day_exercise_model import DayExercise
+from src.trainings.domain.training_day_model import TrainingDay
+from src.trainings.infrastructure.mappers.training_day_mapper import (
     TrainingDayMapper,
 )
-from Backend.trainings.infrastructure.models.dayexercise import DayExerciseModel
-from Backend.trainings.infrastructure.models.trainingday import TrainingDayModel
+from src.trainings.infrastructure.models.dayexercise import DayExerciseModel
+from src.trainings.infrastructure.models.trainingday import TrainingDayModel
 
 
 class TrainingDayRepository:

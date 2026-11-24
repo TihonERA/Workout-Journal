@@ -1,8 +1,8 @@
 from typing import Protocol
 from uuid import UUID
 
-from Backend.trainings.application.dto.workout import WorkoutDetailDTO
-from Backend.trainings.domain.exceptions.workout_exceptions import (
+from src.trainings.application.dto.workout import WorkoutDetailDTO
+from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
     WorkoutNotFound,
 )

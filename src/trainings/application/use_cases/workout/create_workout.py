@@ -1,8 +1,8 @@
 from typing import Protocol
 
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
-from Backend.trainings.application.dto.workout import CreateWorkoutCommand
-from Backend.trainings.domain.workout_model import Workout
+from src.shared.domain.value_objects.entity_title import EntityTitle
+from src.trainings.application.dto.workout import CreateWorkoutCommand
+from src.trainings.domain.workout_model import Workout
 
 
 class WorkoutCreator(Protocol):

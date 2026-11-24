@@ -1,13 +1,13 @@
 from typing import Protocol
 from uuid import UUID
 
-from Backend.trainings.application.dto.training_day import TrainingDayDetailDTO
-from Backend.trainings.application.dto.workout import WorkoutReadDTO
-from Backend.trainings.domain.exceptions.training_day_exceptions import (
+from src.trainings.application.dto.training_day import TrainingDayDetailDTO
+from src.trainings.application.dto.workout import WorkoutReadDTO
+from src.trainings.domain.exceptions.training_day_exceptions import (
     TrainingDayAccessDenied,
     TrainingDayNotFound,
 )
-from Backend.trainings.domain.exceptions.workout_exceptions import (
+from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
     WorkoutNotFound,
 )

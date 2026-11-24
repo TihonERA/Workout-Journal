@@ -2,15 +2,15 @@ from uuid import uuid4
 
 import pytest
 
-from Backend.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
-from Backend.tests.unit.trainings.workout_factories import (
+from src.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
+from src.tests.unit.trainings.workout_factories import (
     WorkoutDTOFactory,
     WorkoutFactory,
 )
-from Backend.trainings.application.use_cases.workout.update_workout import (
+from src.trainings.application.use_cases.workout.update_workout import (
     UpdateWorkoutUseCase,
 )
-from Backend.trainings.domain.exceptions.workout_exceptions import (
+from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
     WorkoutNotFound,
 )

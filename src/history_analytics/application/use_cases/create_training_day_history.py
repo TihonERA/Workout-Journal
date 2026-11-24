@@ -1,14 +1,14 @@
 from typing import Protocol
 from uuid import UUID
 
-from Backend.history_analytics.application.dto.training_day_history import (
+from src.history_analytics.application.dto.training_day_history import (
     CreateTrainingDayHistoryCommand,
 )
-from Backend.history_analytics.application.ports.training_day_history import (
+from src.history_analytics.application.ports.training_day_history import (
     TrainingDayAccessValidator,
 )
-from Backend.history_analytics.domain.training_day_history import TrainingDayHistory
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
+from src.history_analytics.domain.training_day_history import TrainingDayHistory
+from src.shared.domain.value_objects.entity_title import EntityTitle
 
 
 class TrainingDayHistoryCreater(Protocol):

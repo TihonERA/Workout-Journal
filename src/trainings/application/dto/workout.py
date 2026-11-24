@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from uuid import UUID
 
-from Backend.trainings.application.dto.training_day import TrainingDayReadDTO
+from src.trainings.application.dto.training_day import TrainingDayReadDTO
 
 
 @dataclass

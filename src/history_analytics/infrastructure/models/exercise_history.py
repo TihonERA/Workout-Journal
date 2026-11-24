@@ -5,7 +5,7 @@ from uuid import UUID
 from sqlalchemy import ForeignKey, func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from Backend.shared.infrastructure.base import Base
+from src.shared.infrastructure.base import Base
 
 if TYPE_CHECKING:
     from .sets_history import SetsHistory

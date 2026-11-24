@@ -1,7 +1,7 @@
 from typing import Protocol
 from uuid import UUID
 
-from Backend.trainings.domain.training_day_model import TrainingDay
+from src.trainings.domain.training_day_model import TrainingDay
 
 
 class TrainingDayRepositoryPort(Protocol):

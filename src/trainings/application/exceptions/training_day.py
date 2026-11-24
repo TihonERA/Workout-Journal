@@ -1,4 +1,4 @@
-from Backend.shared.application.exceptions import ApplicationError
+from src.shared.application.exceptions import ApplicationError
 
 
 class TrainingDayNotCreatedError(ApplicationError):

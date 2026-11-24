@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 
-from Backend.trainings.domain.exceptions.training_day_exceptions import (
+from src.trainings.domain.exceptions.training_day_exceptions import (
     DayExerciseOrderIntegrityError,
 )
 

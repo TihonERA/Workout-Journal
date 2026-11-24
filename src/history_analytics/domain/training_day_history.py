@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
+from src.shared.domain.value_objects.entity_title import EntityTitle
 
 
 @dataclass

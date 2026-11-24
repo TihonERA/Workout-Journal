@@ -1,10 +1,10 @@
 
-from Backend.trainings.application.dto.training_day import CreateDayExerciseCommand
-from Backend.trainings.application.ports.training_day import (
+from src.trainings.application.dto.training_day import CreateDayExerciseCommand
+from src.trainings.application.ports.training_day import (
     TrainingDayAccessServicePort,
     TrainingDayRepositoryPort,
 )
-from Backend.trainings.domain.training_day_model import TrainingDay
+from src.trainings.domain.training_day_model import TrainingDay
 
 
 class CreateDayExerciseUseCase:

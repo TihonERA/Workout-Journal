@@ -1,6 +1,6 @@
 from copy import copy
 
-from Backend.history_analytics.domain.training_day_history import TrainingDayHistory
+from src.history_analytics.domain.training_day_history import TrainingDayHistory
 
 
 class FakeTrainingDayHistoryRepository:

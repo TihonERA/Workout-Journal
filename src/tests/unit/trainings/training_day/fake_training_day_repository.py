@@ -1,10 +1,10 @@
 from copy import copy, deepcopy
 
-from Backend.trainings.application.exceptions.training_day import (
+from src.trainings.application.exceptions.training_day import (
     TrainingDayConcurrencyError,
     TrainingDayNotCreatedError,
 )
-from Backend.trainings.domain.training_day_model import TrainingDay
+from src.trainings.domain.training_day_model import TrainingDay
 
 
 class FakeTrainingDayRepository:

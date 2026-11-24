@@ -1,7 +1,7 @@
 from typing import Protocol
 from uuid import UUID
 
-from Backend.trainings.application.ports.training_day import (
+from src.trainings.application.ports.training_day import (
     TrainingDayAccessServicePort,
 )
 

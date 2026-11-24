@@ -1,9 +1,9 @@
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
-from Backend.trainings.application.dto.training_day import TrainingDayReadDTO
-from Backend.trainings.application.dto.workout import WorkoutDetailDTO, WorkoutReadDTO
-from Backend.trainings.domain.workout_model import Workout
-from Backend.trainings.infrastructure.models.trainingday import TrainingDayModel
-from Backend.trainings.infrastructure.models.workout import WorkoutModel
+from src.shared.domain.value_objects.entity_title import EntityTitle
+from src.trainings.application.dto.training_day import TrainingDayReadDTO
+from src.trainings.application.dto.workout import WorkoutDetailDTO, WorkoutReadDTO
+from src.trainings.domain.workout_model import Workout
+from src.trainings.infrastructure.models.trainingday import TrainingDayModel
+from src.trainings.infrastructure.models.workout import WorkoutModel
 
 
 class WorkoutMapper:

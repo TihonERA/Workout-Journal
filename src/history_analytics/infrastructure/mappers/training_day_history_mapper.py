@@ -1,11 +1,11 @@
-from Backend.history_analytics.application.dto.training_day_history import (
+from src.history_analytics.application.dto.training_day_history import (
     TrainingDayHistoryDetailDTO,
 )
-from Backend.history_analytics.domain.training_day_history import TrainingDayHistory
-from Backend.history_analytics.infrastructure.models.training_day_history import (
+from src.history_analytics.domain.training_day_history import TrainingDayHistory
+from src.history_analytics.infrastructure.models.training_day_history import (
     TrainingDayHistoryModel,
 )
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
+from src.shared.domain.value_objects.entity_title import EntityTitle
 
 
 class TrainingDayHistoryMapper:

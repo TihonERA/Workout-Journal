@@ -1,6 +1,6 @@
 from typing import Protocol
 
-from Backend.trainings.domain.workout_model import Workout
+from src.trainings.domain.workout_model import Workout
 
 
 class WorkoutReaderPort(Protocol):

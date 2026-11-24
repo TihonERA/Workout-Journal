@@ -2,8 +2,8 @@
 import pytest
 from faker import Faker
 
-from Backend.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
-from Backend.tests.unit.trainings.workout_factories import WorkoutFactory
+from src.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
+from src.tests.unit.trainings.workout_factories import WorkoutFactory
 
 
 @pytest.fixture

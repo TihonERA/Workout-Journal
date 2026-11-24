@@ -3,13 +3,13 @@ from uuid import uuid4
 
 import pytest
 
-from Backend.history_analytics.application.use_cases.create_training_day_history import (
+from src.history_analytics.application.use_cases.create_training_day_history import (
     CreateTrainingDayHistoryUseCase,
 )
-from Backend.tests.unit.history_analytics.training_day_history.fake_training_day_history_repository import (
+from src.tests.unit.history_analytics.training_day_history.fake_training_day_history_repository import (
     FakeTrainingDayHistoryRepository,
 )
-from Backend.tests.unit.history_analytics.training_day_history.training_day_history_factories import (
+from src.tests.unit.history_analytics.training_day_history.training_day_history_factories import (
     TrainingDayHistoryDTOFactory,
 )
 

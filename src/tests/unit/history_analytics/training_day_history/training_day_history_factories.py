@@ -1,6 +1,6 @@
 from faker import Faker
 
-from Backend.history_analytics.application.dto.training_day_history import (
+from src.history_analytics.application.dto.training_day_history import (
     CreateTrainingDayHistoryCommand,
 )
 

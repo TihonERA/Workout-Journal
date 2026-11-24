@@ -1,8 +1,8 @@
 from dataclasses import dataclass
 from uuid import UUID
 
-from Backend.shared.domain.value_objects.entity_title import EntityTitle
-from Backend.trainings.domain.exceptions.workout_exceptions import (
+from src.shared.domain.value_objects.entity_title import EntityTitle
+from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
 )
 

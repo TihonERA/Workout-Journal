@@ -4,7 +4,7 @@ from uuid import UUID
 from sqlalchemy import ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
-from Backend.shared.infrastructure.base import Base
+from src.shared.infrastructure.base import Base
 
 if TYPE_CHECKING:
     from .trainingday import TrainingDayModel

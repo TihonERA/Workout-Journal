@@ -2,19 +2,19 @@ from uuid import uuid4
 
 import pytest
 
-from Backend.tests.unit.trainings.training_day.helpers import assert_same_tr_days
-from Backend.tests.unit.trainings.training_day.training_day_factories import (
+from src.tests.unit.trainings.training_day.helpers import assert_same_tr_days
+from src.tests.unit.trainings.training_day.training_day_factories import (
     TrainingDayFactory,
 )
-from Backend.tests.unit.trainings.workout_factories import WorkoutFactory
-from Backend.trainings.application.services.training_day_access_service import (
+from src.tests.unit.trainings.workout_factories import WorkoutFactory
+from src.trainings.application.services.training_day_access_service import (
     TrainingDayAccessService,
 )
-from Backend.trainings.domain.exceptions.training_day_exceptions import (
+from src.trainings.domain.exceptions.training_day_exceptions import (
     TrainingDayAccessDenied,
     TrainingDayNotFound,
 )
-from Backend.trainings.domain.exceptions.workout_exceptions import (
+from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
     WorkoutNotFound,
 )

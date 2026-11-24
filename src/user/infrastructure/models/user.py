@@ -1,9 +1,10 @@
 from typing import TYPE_CHECKING
 from uuid import UUID, uuid4
 
-from Backend.models.base import Base
 from sqlalchemy import String, Text, text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+
+from src.models.base import Base
 
 if TYPE_CHECKING:
     from .exercise_history import ExerciseHistory

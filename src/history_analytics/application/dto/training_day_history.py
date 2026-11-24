@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from datetime import datetime
 
-from Backend.history_analytics.application.dto.exercise_history import (
+from src.history_analytics.application.dto.exercise_history import (
     ExerciseHistoryDetailDTO,
 )
 

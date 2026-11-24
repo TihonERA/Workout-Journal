@@ -1,4 +1,4 @@
-from Backend.trainings.domain.training_day_model import TrainingDay
+from src.trainings.domain.training_day_model import TrainingDay
 
 
 def assert_same_tr_days(tr_day1: TrainingDay, tr_day2: TrainingDay) -> None:

@@ -1,10 +1,10 @@
 from typing import Protocol
 from uuid import UUID
 
-from Backend.trainings.domain.exceptions.workout_exceptions import (
+from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutNotFound,
 )
-from Backend.trainings.domain.workout_model import Workout
+from src.trainings.domain.workout_model import Workout
 
 
 class WorkoutDeleter(Protocol):

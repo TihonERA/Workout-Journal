@@ -1,7 +1,7 @@
 from sqlalchemy import Enum, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
-from Backend.shared.infrastructure.base import Base
+from src.shared.infrastructure.base import Base
 
 
 class TypeOfExercises(Enum):
