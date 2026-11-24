@@ -31,7 +31,7 @@ quote-style = "double"
 indent-style = "space"
 
 [project]
-name = "tiny-url"
+name = "Workout-Journal"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
@@ -57,7 +57,7 @@ dependencies = [
 ]
 
 [project.scripts]
-tiny-url = "src.main:main"
+Workout-Journal = "src.main:main"
 
 [tool.pyright]
 include = ["src", "alembic"]
