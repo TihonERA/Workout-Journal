@@ -18,7 +18,7 @@ class Settings(BaseSettings):
 
     @computed_field
     @property
-    def DATABASE_URL_asyncpg(self) -> PostgresDsn:
+    def POSTGRES_URL(self) -> PostgresDsn:
         return PostgresDsn.build(
             scheme="postgresql+asyncpg",
             host=self.POSTGRES_HOST,
