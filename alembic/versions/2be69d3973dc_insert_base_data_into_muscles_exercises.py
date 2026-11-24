@@ -5,12 +5,12 @@ Revises: 70cb075bf6c0
 Create Date: 2026-07-03 16:15:14.457152
 
 """
+import json
 from typing import Sequence, Union
 
-from alembic import op
 import sqlalchemy as sa
-import json
 
+from alembic import op
 
 # revision identifiers, used by Alembic.
 revision: str = '2be69d3973dc'

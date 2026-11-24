@@ -1,0 +1,45 @@
+from unittest.mock import AsyncMock
+from uuid import uuid4
+
+import pytest
+
+from src.history_analytics.application.use_cases.create_training_day_history import (
+    CreateTrainingDayHistoryUseCase,
+)
+from src.tests.unit.history_analytics.training_day_history.fake_training_day_history_repository import (
+    FakeTrainingDayHistoryRepository,
+)
+from src.tests.unit.history_analytics.training_day_history.training_day_history_factories import (
+    TrainingDayHistoryDTOFactory,
+)
+
+
+@pytest.fixture
+def use_case(
+    fake_tr_day_history_repo: FakeTrainingDayHistoryRepository,
+) -> CreateTrainingDayHistoryUseCase:
+    return CreateTrainingDayHistoryUseCase(AsyncMock(), fake_tr_day_history_repo)
+
+
+async def test_create_success(
+    tr_day_history_dto_factory: TrainingDayHistoryDTOFactory,
+    use_case: CreateTrainingDayHistoryUseCase,
+    fake_tr_day_history_repo: FakeTrainingDayHistoryRepository,
+) -> None:
+    UNBOUNDED = -1
+
+    command = tr_day_history_dto_factory.make_training_day_history_create_command(
+        day_id=UNBOUNDED
+    )
+
+    training_day_history = await use_case(uuid4(), command)
+
+    assert training_day_history.id is not None
+
+    fetched_training_day_history = await fake_tr_day_history_repo.get(
+        training_day_history.id
+    )
+
+    assert fetched_training_day_history is not None
+    assert fetched_training_day_history.day_id == command.day_id
+    assert fetched_training_day_history.day_name.value == command.day_name
