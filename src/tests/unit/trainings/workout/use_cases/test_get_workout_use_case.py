@@ -2,9 +2,9 @@ from uuid import uuid4
 
 import pytest
 
-from src.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
+from src.tests.unit.trainings.fake_workout_reader import FakeWorkoutReader
 from src.tests.unit.trainings.workout_factories import WorkoutFactory
-from src.trainings.application.dto.workout import WorkoutDetailDTO
+from src.trainings.application.dto.workout import WorkoutReadDTO
 from src.trainings.application.use_cases.workout.get_workout import (
     GetLoadedWorkoutUseCase,
 )
@@ -16,12 +16,12 @@ from src.trainings.domain.workout_model import Workout
 
 
 @pytest.fixture
-def use_case(workout_repo: FakeWorkoutRepository) -> GetLoadedWorkoutUseCase:
-    return GetLoadedWorkoutUseCase(workout_repo)
+def use_case(workout_reader: FakeWorkoutReader) -> GetLoadedWorkoutUseCase:
+    return GetLoadedWorkoutUseCase(workout_reader)
 
 
 def assert_same_workouts(
-    first_workout: Workout, second_workout: WorkoutDetailDTO
+    first_workout: Workout, second_workout: WorkoutReadDTO
 ) -> None:
     assert first_workout.id == second_workout.id
     assert first_workout.user_id == second_workout.user_id
