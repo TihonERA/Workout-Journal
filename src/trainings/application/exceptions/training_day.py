@@ -3,7 +3,7 @@ from src.shared.application.exceptions import ApplicationError
 
 class TrainingDayNotCreatedError(ApplicationError):
     def __init__(self) -> None:
-        super().__init__("Cant change unexisting entity")
+        super().__init__("Cant change unexisting training day")
 
 
 class TrainingDayConcurrencyError(ApplicationError):

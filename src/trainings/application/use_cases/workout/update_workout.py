@@ -11,7 +11,7 @@ from src.trainings.domain.workout_model import Workout
 class WorkoutUpdater(Protocol):
     async def get(self, id: int) -> Workout | None: ...
 
-    async def save(self, workout: Workout) -> Workout | None: ...
+    async def save(self, workout: Workout) -> Workout: ...
 
 
 class UpdateWorkoutUseCase:
@@ -33,8 +33,5 @@ class UpdateWorkoutUseCase:
         )
 
         workout = await self.workout_repo.save(workout)
-
-        if workout is None:
-            raise WorkoutNotFound(command.workout_id)
 
         return workout

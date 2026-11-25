@@ -20,8 +20,6 @@ class DeleteTrainingDayUseCase:
         self.tr_day_repo = tr_day_repo
 
     async def __call__(self, user_id: UUID, workout_id: int, day_id: int) -> None:
-        training_day = await self.access_service.get_authorized_day(
-            user_id, workout_id, day_id
-        )
+        await self.access_service.get_authorized_day(user_id, workout_id, day_id)
 
         await self.tr_day_repo.delete(day_id)

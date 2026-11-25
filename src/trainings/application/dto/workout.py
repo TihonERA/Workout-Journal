@@ -28,8 +28,4 @@ class WorkoutReadDTO:
     name: str
     description: str | None
     public: bool
-
-
-@dataclass(frozen=True)
-class WorkoutDetailDTO(WorkoutReadDTO):
-    training_days: list[TrainingDayReadDTO]
+    training_days: list[TrainingDayReadDTO] | None

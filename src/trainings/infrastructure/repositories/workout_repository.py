@@ -1,6 +1,10 @@
 from sqlalchemy import delete
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from src.trainings.application.exceptions.workout import (
+    WorkoutConcurrencyError,
+    WorkoutNotCreatedError,
+)
 from src.trainings.domain.workout_model import Workout
 from src.trainings.infrastructure.mappers.workout_mapper import WorkoutMapper
 from src.trainings.infrastructure.models.workout import WorkoutModel
@@ -29,11 +33,14 @@ class WorkoutRepository:
 
         return WorkoutMapper.to_domain(workout_model)
 
-    async def save(self, workout: Workout) -> Workout | None:
-        workout_model = await self.session.get(WorkoutModel, workout.id)
+    async def save(self, workout: Workout) -> Workout:
+        if workout.id is None:
+            raise WorkoutNotCreatedError()
+
+        workout_model = await self._get_model(workout.id)
 
         if workout_model is None:
-            return None
+            raise WorkoutConcurrencyError(workout.id)
 
         workout_model.name = workout.name.value
         workout_model.description = workout.description
