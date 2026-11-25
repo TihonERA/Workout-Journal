@@ -15,14 +15,14 @@ class WorkoutDeleter(Protocol):
 
 class DeleteWorkoutUseCase:
     def __init__(self, workout_repo: WorkoutDeleter) -> None:
-        self.workout_repo = workout_repo
+        self._workout_repo = workout_repo
 
     async def __call__(self, user_id: UUID, workout_id: int) -> None:
-        workout = await self.workout_repo.get(workout_id)
+        workout = await self._workout_repo.get(workout_id)
 
         if workout is None:
             raise WorkoutNotFound(workout_id)
 
         workout.ensure_ownership(user_id)
 
-        await self.workout_repo.delete(workout_id)
+        await self._workout_repo.delete(workout_id)

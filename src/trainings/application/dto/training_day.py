@@ -4,7 +4,6 @@ from uuid import UUID
 
 @dataclass(frozen=True)
 class CreateTrainingDayCommand:
-    user_id: UUID
     workout_id: int
     name: str
     day_order: int
@@ -12,9 +11,8 @@ class CreateTrainingDayCommand:
 
 @dataclass(frozen=True)
 class UpdateTrainingDayCommand:
-    user_id: UUID
-    workout_id: int
     day_id: int
+    workout_id: int
     name: str | None = None
     day_order: int | None = None
 
@@ -26,8 +24,6 @@ class GetTrainingDayCommand:
 
 @dataclass(frozen=True)
 class BaseDayExerciseCommand:
-    user_id: UUID
-    workout_id: int
     day_id: int
     exercise_id: int
     exercise_order: int
@@ -38,7 +34,8 @@ class CreateDayExerciseCommand(BaseDayExerciseCommand): ...
 
 
 @dataclass(frozen=True)
-class UpdateDayExerciseCommand(BaseDayExerciseCommand): ...
+class UpdateDayExerciseCommand(BaseDayExerciseCommand):
+    workout_id: int
 
 
 @dataclass(frozen=True)
@@ -54,8 +51,4 @@ class TrainingDayReadDTO:
     workout_id: int
     name: str
     day_order: int
-
-
-@dataclass(frozen=True)
-class TrainingDayDetailDTO(TrainingDayReadDTO):
-    day_exercises: list[DayExerciseReadDTO] | None = None
+    day_exercises: list[DayExerciseReadDTO]

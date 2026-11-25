@@ -1,7 +1,7 @@
 from typing import Protocol
 from uuid import UUID
 
-from src.trainings.application.dto.training_day import TrainingDayDetailDTO
+from src.trainings.application.dto.training_day import TrainingDayReadDTO
 from src.trainings.application.dto.workout import WorkoutReadDTO
 from src.trainings.domain.exceptions.training_day_exceptions import (
     TrainingDayAccessDenied,
@@ -14,26 +14,26 @@ from src.trainings.domain.exceptions.workout_exceptions import (
 
 
 class TrainingDayReaderPort(Protocol):
-    async def get_loaded(self, id: int) -> TrainingDayDetailDTO | None: ...
+    async def get(self, id: int) -> TrainingDayReadDTO | None: ...
 
 
-class WorkoutUnloadedReaderPort(Protocol):
-    async def get_unloaded(self, id: int) -> WorkoutReadDTO | None: ...
+class WorkoutReaderPort(Protocol):
+    async def get(self, id: int) -> WorkoutReadDTO | None: ...
 
 
 class GetTrainingDayUseCase:
     def __init__(
         self,
-        workout_reader: WorkoutUnloadedReaderPort,
+        workout_reader: WorkoutReaderPort,
         tr_day_reader: TrainingDayReaderPort,
     ) -> None:
-        self.workout_reader = workout_reader
-        self.tr_day_reader = tr_day_reader
+        self._workout_reader = workout_reader
+        self._tr_day_reader = tr_day_reader
 
     async def __call__(
         self, user_id: UUID, workout_id: int, day_id: int
-    ) -> TrainingDayDetailDTO:
-        workout = await self.workout_reader.get_unloaded(workout_id)
+    ) -> TrainingDayReadDTO:
+        workout = await self._workout_reader.get(workout_id)
 
         if workout is None:
             raise WorkoutNotFound(workout_id)
@@ -41,7 +41,7 @@ class GetTrainingDayUseCase:
         if not workout.public and workout.user_id != user_id:
             raise WorkoutAccessDenied()
 
-        training_day = await self.tr_day_reader.get_loaded(day_id)
+        training_day = await self._tr_day_reader.get(day_id)
 
         if training_day is None:
             raise TrainingDayNotFound

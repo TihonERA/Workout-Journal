@@ -14,10 +14,10 @@ class WorkoutReader(Protocol):
 
 class GetLoadedWorkoutUseCase:
     def __init__(self, workout_reader: WorkoutReader) -> None:
-        self.workout_reader = workout_reader
+        self._workout_reader = workout_reader
 
     async def __call__(self, user_id: UUID, workout_id: int) -> WorkoutReadDTO:
-        workout = await self.workout_reader.get(workout_id)
+        workout = await self._workout_reader.get(workout_id)
 
         if workout is None:
             raise WorkoutNotFound(workout_id)

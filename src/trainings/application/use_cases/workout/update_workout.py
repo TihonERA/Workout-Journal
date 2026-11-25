@@ -16,10 +16,10 @@ class WorkoutUpdater(Protocol):
 
 class UpdateWorkoutUseCase:
     def __init__(self, workout_repo: WorkoutUpdater) -> None:
-        self.workout_repo = workout_repo
+        self._workout_repo = workout_repo
 
     async def __call__(self, command: UpdateWorkoutCommand) -> Workout:
-        workout = await self.workout_repo.get(command.workout_id)
+        workout = await self._workout_repo.get(command.workout_id)
 
         if workout is None:
             raise WorkoutNotFound(command.workout_id)
@@ -32,6 +32,6 @@ class UpdateWorkoutUseCase:
             public=command.public,
         )
 
-        workout = await self.workout_repo.save(workout)
+        workout = await self._workout_repo.save(workout)
 
         return workout

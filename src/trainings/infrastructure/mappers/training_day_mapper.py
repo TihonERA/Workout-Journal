@@ -1,7 +1,7 @@
 from src.shared.domain.value_objects.entity_title import EntityTitle
 from src.trainings.application.dto.training_day import (
     DayExerciseReadDTO,
-    TrainingDayDetailDTO,
+    TrainingDayReadDTO,
 )
 from src.trainings.domain.day_exercise_model import DayExercise
 from src.trainings.domain.training_day_model import TrainingDay
@@ -60,8 +60,8 @@ class TrainingDayMapper:
         )
 
     @classmethod
-    def to_dto(cls, training_day: TrainingDayModel) -> TrainingDayDetailDTO:
-        return TrainingDayDetailDTO(
+    def to_dto(cls, training_day: TrainingDayModel) -> TrainingDayReadDTO:
+        return TrainingDayReadDTO(
             id=training_day.id,
             workout_id=training_day.workout_id,
             name=training_day.name,

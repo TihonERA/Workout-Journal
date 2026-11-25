@@ -1,8 +1,7 @@
-
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from src.trainings.application.dto.training_day import TrainingDayDetailDTO
+from src.trainings.application.dto.training_day import TrainingDayReadDTO
 from src.trainings.infrastructure.mappers.training_day_mapper import (
     TrainingDayMapper,
 )
@@ -13,7 +12,7 @@ class TrainingDayReader:
     def __init__(self, session: AsyncSession) -> None:
         self.session = session
 
-    async def get_loaded(self, id: int) -> TrainingDayDetailDTO | None:
+    async def get(self, id: int) -> TrainingDayReadDTO | None:
         training_day = await self.session.get(
             TrainingDayModel,
             id,

@@ -11,7 +11,7 @@ class WorkoutCreator(Protocol):
 
 class CreateWorkoutUseCase:
     def __init__(self, workout_repo: WorkoutCreator) -> None:
-        self.workout_repo = workout_repo
+        self._workout_repo = workout_repo
 
     async def __call__(self, command: CreateWorkoutCommand) -> Workout:
         workout = Workout.create(
@@ -21,4 +21,4 @@ class CreateWorkoutUseCase:
             public=command.public,
         )
 
-        return await self.workout_repo.create(workout)
+        return await self._workout_repo.create(workout)
