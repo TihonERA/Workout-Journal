@@ -28,4 +28,4 @@ class WorkoutReadDTO:
     name: str
     description: str | None
     public: bool
-    training_days: list[TrainingDayReadDTO] | None
+    training_days: list[TrainingDayReadDTO]

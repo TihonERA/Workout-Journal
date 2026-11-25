@@ -1,7 +1,7 @@
 from typing import Protocol
 from uuid import UUID
 
-from src.trainings.application.dto.workout import WorkoutDetailDTO
+from src.trainings.application.dto.workout import WorkoutReadDTO
 from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
     WorkoutNotFound,
@@ -9,15 +9,15 @@ from src.trainings.domain.exceptions.workout_exceptions import (
 
 
 class WorkoutReader(Protocol):
-    async def get_loaded(self, id: int) -> WorkoutDetailDTO | None: ...
+    async def get(self, id: int) -> WorkoutReadDTO | None: ...
 
 
 class GetLoadedWorkoutUseCase:
     def __init__(self, workout_reader: WorkoutReader) -> None:
         self.workout_reader = workout_reader
 
-    async def __call__(self, user_id: UUID, workout_id: int) -> WorkoutDetailDTO:
-        workout = await self.workout_reader.get_loaded(workout_id)
+    async def __call__(self, user_id: UUID, workout_id: int) -> WorkoutReadDTO:
+        workout = await self.workout_reader.get(workout_id)
 
         if workout is None:
             raise WorkoutNotFound(workout_id)

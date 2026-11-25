@@ -1,6 +1,6 @@
 from src.shared.domain.value_objects.entity_title import EntityTitle
 from src.trainings.application.dto.training_day import TrainingDayReadDTO
-from src.trainings.application.dto.workout import WorkoutDetailDTO, WorkoutReadDTO
+from src.trainings.application.dto.workout import WorkoutReadDTO
 from src.trainings.domain.workout_model import Workout
 from src.trainings.infrastructure.models.trainingday import TrainingDayModel
 from src.trainings.infrastructure.models.workout import WorkoutModel
@@ -36,22 +36,12 @@ class WorkoutMapper:
         )
 
     @classmethod
-    def to_dto_loaded(cls, workout: WorkoutModel) -> WorkoutDetailDTO:
-        return WorkoutDetailDTO(
-            id=workout.id,
-            user_id=workout.user_id,
-            name=workout.name,
-            description=workout.description,
-            public=workout.public,
-            training_days=[cls._to_dto_tr_day(t) for t in workout.training_days],
-        )
-
-    @staticmethod
-    def to_dto_unloaded(workout: WorkoutModel) -> WorkoutReadDTO:
+    def to_dto(cls, workout: WorkoutModel) -> WorkoutReadDTO:
         return WorkoutReadDTO(
             id=workout.id,
             user_id=workout.user_id,
             name=workout.name,
             description=workout.description,
             public=workout.public,
+            training_days=[cls._to_dto_tr_day(t) for t in workout.training_days],
         )
