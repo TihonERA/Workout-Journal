@@ -9,9 +9,6 @@ from src.tests.unit.trainings.training_day.training_day_factories import (
     TrainingDayFactory,
 )
 from src.tests.unit.trainings.workout_factories import WorkoutFactory
-from src.trainings.application.services.training_day_access_service import (
-    TrainingDayAccessService,
-)
 from src.trainings.application.use_cases.training_day.create_day_exercise import (
     CreateDayExerciseUseCase,
 )
@@ -21,10 +18,8 @@ from src.trainings.domain.exceptions.training_day_exceptions import (
 
 
 @pytest.fixture
-def use_case(
-    access_service: TrainingDayAccessService, tr_day_repo: FakeTrainingDayRepository
-) -> CreateDayExerciseUseCase:
-    return CreateDayExerciseUseCase(access_service, tr_day_repo)
+def use_case(tr_day_repo: FakeTrainingDayRepository) -> CreateDayExerciseUseCase:
+    return CreateDayExerciseUseCase(tr_day_repo)
 
 
 async def test_success(
@@ -44,7 +39,6 @@ async def test_success(
     assert training_day.id is not None
 
     command = day_exercises_dto_factory.make_create_day_exercise_command(
-        user_id=workout.user_id,
         workout_id=training_day.workout_id,
         day_id=training_day.id,
     )
@@ -82,7 +76,6 @@ async def test_atomicity(
     assert training_day.id is not None
 
     command = day_exercises_dto_factory.make_create_day_exercise_command(
-        user_id=different_workout.user_id,
         workout_id=different_workout.id,
         day_id=training_day.id,
     )

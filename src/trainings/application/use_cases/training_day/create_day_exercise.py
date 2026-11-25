@@ -19,6 +19,8 @@ class CreateDayExerciseUseCase:
         if training_day is None:
             raise TrainingDayNotFound(command.day_id)
 
+        training_day.ensure_ownership(command.workout_id)
+
         training_day.add_exercise(command.exercise_id, command.exercise_order)
 
         return await self._tr_day_repo.save(training_day)

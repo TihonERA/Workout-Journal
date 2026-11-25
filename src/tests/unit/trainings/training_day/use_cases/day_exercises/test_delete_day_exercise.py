@@ -11,9 +11,6 @@ from src.tests.unit.trainings.training_day.training_day_factories import (
     TrainingDayFactory,
 )
 from src.tests.unit.trainings.workout_factories import WorkoutFactory
-from src.trainings.application.services.training_day_access_service import (
-    TrainingDayAccessService,
-)
 from src.trainings.application.use_cases.training_day.delete_day_exercise import (
     DeleteDayExerciseUseCase,
 )
@@ -23,10 +20,8 @@ from src.trainings.domain.exceptions.training_day_exceptions import (
 
 
 @pytest.fixture
-def use_case(
-    access_service: TrainingDayAccessService, tr_day_repo: FakeTrainingDayRepository
-) -> DeleteDayExerciseUseCase:
-    return DeleteDayExerciseUseCase(access_service, tr_day_repo)
+def use_case(tr_day_repo: FakeTrainingDayRepository) -> DeleteDayExerciseUseCase:
+    return DeleteDayExerciseUseCase(tr_day_repo)
 
 
 async def test_success(

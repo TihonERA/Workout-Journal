@@ -13,7 +13,7 @@ class TrainingDayCreator(Protocol):
 
 
 class WorkoutReader(Protocol):
-    async def get(self, workout_id: int) -> WorkoutReadDTO | None: ...
+    async def get(self, id: int) -> WorkoutReadDTO | None: ...
 
 
 class CreateTrainingDayUseCase:

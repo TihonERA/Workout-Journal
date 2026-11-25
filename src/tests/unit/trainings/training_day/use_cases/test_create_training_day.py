@@ -3,7 +3,7 @@ from uuid import uuid4
 import pytest
 
 from src.tests.unit.trainings.conftest import WorkoutFactory
-from src.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
+from src.tests.unit.trainings.fake_workout_reader import FakeWorkoutReader
 from src.tests.unit.trainings.training_day.fake_training_day_repository import (
     FakeTrainingDayRepository,
 )
@@ -14,16 +14,17 @@ from src.trainings.application.use_cases.training_day.create_training_day import
     CreateTrainingDayUseCase,
 )
 from src.trainings.domain.exceptions.workout_exceptions import (
-    WorkoutAccessDenied,
     WorkoutNotFound,
 )
 
 
 @pytest.fixture
 def use_case(
-    workout_repo: FakeWorkoutRepository, tr_day_repo: FakeTrainingDayRepository
+    workout_reader: FakeWorkoutReader, tr_day_repo: FakeTrainingDayRepository
 ) -> CreateTrainingDayUseCase:
-    return CreateTrainingDayUseCase(workout_repo=workout_repo, tr_day_repo=tr_day_repo)
+    return CreateTrainingDayUseCase(
+        workout_reader=workout_reader, tr_day_repo=tr_day_repo
+    )
 
 
 async def test_success(
@@ -63,22 +64,4 @@ async def test_workout_not_found(
     )
 
     with pytest.raises(WorkoutNotFound):
-        await use_case(command)
-
-
-async def test_workout_access_denied(
-    workout_factory: WorkoutFactory,
-    tr_day_dto_factory: TrainingDayDTOFactory,
-    use_case: CreateTrainingDayUseCase,
-) -> None:
-    workout = await workout_factory.create_workout()
-    workout_id = workout.id
-
-    assert workout_id is not None
-
-    command = tr_day_dto_factory.make_create_tr_day_command(
-        user_id=uuid4(), workout_id=workout_id
-    )
-
-    with pytest.raises(WorkoutAccessDenied):
         await use_case(command)

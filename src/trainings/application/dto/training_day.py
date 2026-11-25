@@ -24,6 +24,7 @@ class GetTrainingDayCommand:
 
 @dataclass(frozen=True)
 class BaseDayExerciseCommand:
+    workout_id: int
     day_id: int
     exercise_id: int
     exercise_order: int
@@ -34,8 +35,7 @@ class CreateDayExerciseCommand(BaseDayExerciseCommand): ...
 
 
 @dataclass(frozen=True)
-class UpdateDayExerciseCommand(BaseDayExerciseCommand):
-    workout_id: int
+class UpdateDayExerciseCommand(BaseDayExerciseCommand): ...
 
 
 @dataclass(frozen=True)
