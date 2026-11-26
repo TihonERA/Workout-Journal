@@ -8,7 +8,7 @@ from src.trainings.domain.exceptions.workout_exceptions import (
 )
 
 
-class GetLoadedWorkoutUseCase:
+class GetWorkoutUseCase:
     def __init__(self, workout_reader: IWorkoutReader) -> None:
         self._workout_reader = workout_reader
 

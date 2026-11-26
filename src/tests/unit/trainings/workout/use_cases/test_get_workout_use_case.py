@@ -8,7 +8,7 @@ from src.tests.unit.trainings.fake_objects.fake_workout_reader import (
 )
 from src.trainings.application.dto.workout import WorkoutReadDTO
 from src.trainings.application.use_cases.workout.get_workout import (
-    GetLoadedWorkoutUseCase,
+    GetWorkoutUseCase,
 )
 from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
@@ -18,8 +18,8 @@ from src.trainings.domain.workout_model import Workout
 
 
 @pytest.fixture
-def use_case(workout_reader: FakeWorkoutReader) -> GetLoadedWorkoutUseCase:
-    return GetLoadedWorkoutUseCase(workout_reader)
+def use_case(workout_reader: FakeWorkoutReader) -> GetWorkoutUseCase:
+    return GetWorkoutUseCase(workout_reader)
 
 
 def assert_same_workouts(
@@ -33,7 +33,7 @@ def assert_same_workouts(
 
 
 async def test_success(
-    workout_factory: WorkoutFactory, use_case: GetLoadedWorkoutUseCase
+    workout_factory: WorkoutFactory, use_case: GetWorkoutUseCase
 ) -> None:
     workout = await workout_factory.create_workout()
     workout_id = workout.id
@@ -47,13 +47,13 @@ async def test_success(
     assert_same_workouts(workout, fetched_workout)
 
 
-async def test_not_found(use_case: GetLoadedWorkoutUseCase) -> None:
+async def test_not_found(use_case: GetWorkoutUseCase) -> None:
     with pytest.raises(WorkoutNotFound):
         await use_case(user_id=uuid4(), workout_id=-1)
 
 
 async def test_read_public(
-    workout_factory: WorkoutFactory, use_case: GetLoadedWorkoutUseCase
+    workout_factory: WorkoutFactory, use_case: GetWorkoutUseCase
 ) -> None:
     workout = await workout_factory.create_workout(public=True)
     workout_id = workout.id
@@ -68,7 +68,7 @@ async def test_read_public(
 
 
 async def test_access_denied(
-    workout_factory: WorkoutFactory, use_case: GetLoadedWorkoutUseCase
+    workout_factory: WorkoutFactory, use_case: GetWorkoutUseCase
 ) -> None:
     workout = await workout_factory.create_workout()
     workout_id = workout.id
