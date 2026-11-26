@@ -2,7 +2,7 @@ from typing import Protocol
 from uuid import UUID
 
 from src.trainings.application.dto.training_day import TrainingDayReadDTO
-from src.trainings.application.dto.workout import WorkoutReadDTO
+from src.trainings.application.ports.workout import IWorkoutReader
 from src.trainings.domain.exceptions.training_day_exceptions import (
     TrainingDayAccessDenied,
     TrainingDayNotFound,
@@ -17,14 +17,10 @@ class TrainingDayReaderPort(Protocol):
     async def get(self, id: int) -> TrainingDayReadDTO | None: ...
 
 
-class WorkoutReaderPort(Protocol):
-    async def get(self, id: int) -> WorkoutReadDTO | None: ...
-
-
 class GetTrainingDayUseCase:
     def __init__(
         self,
-        workout_reader: WorkoutReaderPort,
+        workout_reader: IWorkoutReader,
         tr_day_reader: TrainingDayReaderPort,
     ) -> None:
         self._workout_reader = workout_reader

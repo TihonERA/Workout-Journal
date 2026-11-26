@@ -1,19 +1,15 @@
-from typing import Protocol
 from uuid import UUID
 
 from src.trainings.application.dto.workout import WorkoutReadDTO
+from src.trainings.application.ports.workout import IWorkoutReader
 from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
     WorkoutNotFound,
 )
 
 
-class WorkoutReader(Protocol):
-    async def get(self, id: int) -> WorkoutReadDTO | None: ...
-
-
 class GetLoadedWorkoutUseCase:
-    def __init__(self, workout_reader: WorkoutReader) -> None:
+    def __init__(self, workout_reader: IWorkoutReader) -> None:
         self._workout_reader = workout_reader
 
     async def __call__(self, user_id: UUID, workout_id: int) -> WorkoutReadDTO:

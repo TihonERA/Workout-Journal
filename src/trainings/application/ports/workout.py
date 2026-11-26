@@ -1,7 +1,7 @@
 from typing import Protocol
 
-from src.trainings.domain.workout_model import Workout
+from src.trainings.application.dto.workout import WorkoutReadDTO
 
 
-class WorkoutReaderPort(Protocol):
-    async def get(self, id: int) -> Workout | None: ...
+class IWorkoutReader(Protocol):
+    async def get(self, id: int) -> WorkoutReadDTO | None: ...
