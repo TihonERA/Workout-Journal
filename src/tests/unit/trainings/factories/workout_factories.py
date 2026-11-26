@@ -3,7 +3,7 @@ from uuid import UUID, uuid4
 from faker import Faker
 
 from src.shared.domain.value_objects.entity_title import EntityTitle
-from src.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
+from src.tests.unit.fake_objects.fake_workout_repository import FakeWorkoutRepository
 from src.trainings.application.dto.workout import (
     CreateWorkoutCommand,
     UpdateWorkoutCommand,

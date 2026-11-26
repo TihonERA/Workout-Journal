@@ -1,18 +1,13 @@
 import pytest
 from faker import Faker
 
-from src.tests.unit.trainings.training_day.fake_training_day_repository import (
+from src.tests.unit.fake_objects.fake_training_day_repository import (
     FakeTrainingDayRepository,
 )
-from src.tests.unit.trainings.training_day.training_day_factories import (
+from src.tests.unit.trainings.factories.training_day_factories import (
     TrainingDayDTOFactory,
     TrainingDayFactory,
 )
-
-
-@pytest.fixture
-def tr_day_repo() -> FakeTrainingDayRepository:
-    return FakeTrainingDayRepository()
 
 
 @pytest.fixture

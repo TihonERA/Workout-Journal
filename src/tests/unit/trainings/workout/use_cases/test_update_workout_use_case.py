@@ -2,8 +2,10 @@ from uuid import uuid4
 
 import pytest
 
-from src.tests.unit.trainings.fake_workout_repository import FakeWorkoutRepository
-from src.tests.unit.trainings.workout_factories import (
+from src.tests.unit.fake_objects.fake_workout_repository import (
+    FakeWorkoutRepository,
+)
+from src.tests.unit.trainings.factories.workout_factories import (
     WorkoutDTOFactory,
     WorkoutFactory,
 )

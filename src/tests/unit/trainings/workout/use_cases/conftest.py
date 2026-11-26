@@ -1,7 +1,7 @@
 import pytest
 from faker import Faker
 
-from src.tests.unit.trainings.workout_factories import WorkoutDTOFactory
+from src.tests.unit.trainings.factories.workout_factories import WorkoutDTOFactory
 
 
 @pytest.fixture

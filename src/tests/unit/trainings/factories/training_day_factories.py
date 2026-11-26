@@ -4,7 +4,7 @@ from uuid import UUID
 from faker import Faker
 
 from src.shared.domain.value_objects.entity_title import EntityTitle
-from src.tests.unit.trainings.training_day.fake_training_day_repository import (
+from src.tests.unit.fake_objects.fake_training_day_repository import (
     FakeTrainingDayRepository,
 )
 from src.tests.unit.trainings.training_day.helpers import create_day_exercises

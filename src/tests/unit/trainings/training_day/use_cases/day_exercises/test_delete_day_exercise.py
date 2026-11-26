@@ -1,16 +1,18 @@
 import pytest
 
-from src.tests.unit.trainings.training_day.fake_training_day_repository import (
+from src.tests.unit.fake_objects.fake_training_day_repository import (
     FakeTrainingDayRepository,
+)
+from src.tests.unit.trainings.factories.training_day_factories import (
+    TrainingDayFactory,
+)
+from src.tests.unit.trainings.factories.workout_factories import (
+    WorkoutFactory,
 )
 from src.tests.unit.trainings.training_day.helpers import (
     assert_same_tr_days,
     get_exercise_id_order,
 )
-from src.tests.unit.trainings.training_day.training_day_factories import (
-    TrainingDayFactory,
-)
-from src.tests.unit.trainings.workout_factories import WorkoutFactory
 from src.trainings.application.use_cases.training_day.delete_day_exercise import (
     DeleteDayExerciseUseCase,
 )

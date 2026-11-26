@@ -1,7 +1,7 @@
 import pytest
 from faker import Faker
 
-from src.tests.unit.trainings.training_day.training_day_factories import (
+from src.tests.unit.trainings.factories.training_day_factories import (
     DayExerciseDTOFactory,
 )
 

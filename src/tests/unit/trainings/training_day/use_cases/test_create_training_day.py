@@ -2,14 +2,14 @@ from uuid import uuid4
 
 import pytest
 
-from src.tests.unit.trainings.conftest import WorkoutFactory
-from src.tests.unit.trainings.fake_workout_reader import FakeWorkoutReader
-from src.tests.unit.trainings.training_day.fake_training_day_repository import (
+from src.tests.unit.fake_objects.fake_training_day_repository import (
     FakeTrainingDayRepository,
 )
-from src.tests.unit.trainings.training_day.training_day_factories import (
+from src.tests.unit.trainings.factories.training_day_factories import (
     TrainingDayDTOFactory,
 )
+from src.tests.unit.trainings.factories.workout_factories import WorkoutFactory
+from src.tests.unit.trainings.fake_objects.fake_workout_reader import FakeWorkoutReader
 from src.trainings.application.use_cases.training_day.create_training_day import (
     CreateTrainingDayUseCase,
 )
