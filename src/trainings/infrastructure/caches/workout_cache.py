@@ -13,15 +13,27 @@ class WorkoutCache:
     TTL: Final = 24 * 3600
 
     def __init__(self, redis: Redis) -> None:
-        self.redis = redis
+        self._redis = redis
 
-    def _generate_key(self, workout_id: int) -> str:
-        return f"{self.PREFIX}{workout_id}"
+    def _generate_key(self, id: int) -> str:
+        return f"{self.PREFIX}{id}"
 
-    async def get(self, workout_id: int) -> WorkoutReadDTO | None:
-        key = self._generate_key(workout_id)
+    async def get(self, id: int) -> WorkoutReadDTO | None:
+        key = self._generate_key(id)
 
-        if workout_json := await self.redis.get(key):
+        if workout_json := await self._redis.get(key):
             return WorkoutCacheSerializer.from_json(workout_json)
 
         return None
+
+    async def set(self, workout: WorkoutReadDTO) -> None:
+        key = self._generate_key(workout.id)
+
+        workout_as_json = WorkoutCacheSerializer.to_json(workout)
+
+        await self._redis.set(name=key, value=workout_as_json, ex=self.TTL)
+
+    async def delete(self, id: int) -> None:
+        key = self._generate_key(id)
+
+        await self._redis.delete(key)
