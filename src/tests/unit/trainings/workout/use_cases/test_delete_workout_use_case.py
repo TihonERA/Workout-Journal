@@ -2,6 +2,7 @@ from uuid import uuid4
 
 import pytest
 
+from src.tests.unit.fake_objects.fake_unit_of_work import FakeUnitOfWork
 from src.tests.unit.fake_objects.fake_workout_repository import (
     FakeWorkoutRepository,
 )
@@ -16,8 +17,8 @@ from src.trainings.domain.exceptions.workout_exceptions import (
 
 
 @pytest.fixture
-def use_case(workout_repo: FakeWorkoutRepository) -> DeleteWorkoutUseCase:
-    return DeleteWorkoutUseCase(workout_repo)
+def use_case(fake_uow: FakeUnitOfWork) -> DeleteWorkoutUseCase:
+    return DeleteWorkoutUseCase(fake_uow)
 
 
 async def test_success(

@@ -5,6 +5,7 @@ import pytest
 from src.tests.unit.fake_objects.fake_training_day_repository import (
     FakeTrainingDayRepository,
 )
+from src.tests.unit.fake_objects.fake_unit_of_work import FakeUnitOfWork
 from src.tests.unit.trainings.factories.training_day_factories import (
     TrainingDayDTOFactory,
 )
@@ -20,10 +21,10 @@ from src.trainings.domain.exceptions.workout_exceptions import (
 
 @pytest.fixture
 def use_case(
-    workout_reader: FakeWorkoutReader, tr_day_repo: FakeTrainingDayRepository
+    workout_reader: FakeWorkoutReader, fake_uow: FakeUnitOfWork
 ) -> CreateTrainingDayUseCase:
     return CreateTrainingDayUseCase(
-        workout_reader=workout_reader, tr_day_repo=tr_day_repo
+        workout_reader=workout_reader, unit_of_work=fake_uow
     )
 
 

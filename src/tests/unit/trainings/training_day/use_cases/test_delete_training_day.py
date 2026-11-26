@@ -3,6 +3,7 @@ import pytest
 from src.tests.unit.fake_objects.fake_training_day_repository import (
     FakeTrainingDayRepository,
 )
+from src.tests.unit.fake_objects.fake_unit_of_work import FakeUnitOfWork
 from src.tests.unit.trainings.factories.training_day_factories import (
     TrainingDayFactory,
 )
@@ -17,8 +18,8 @@ from src.trainings.domain.exceptions.training_day_exceptions import (
 
 
 @pytest.fixture
-def use_case(tr_day_repo: FakeTrainingDayRepository) -> DeleteTrainingDayUseCase:
-    return DeleteTrainingDayUseCase(tr_day_repo)
+def use_case(fake_uow: FakeUnitOfWork) -> DeleteTrainingDayUseCase:
+    return DeleteTrainingDayUseCase(fake_uow)
 
 
 async def test_success(

@@ -1,11 +1,19 @@
 from typing import Self
 
+from src.tests.unit.fake_objects.fake_training_day_repository import (
+    FakeTrainingDayRepository,
+)
+from src.tests.unit.fake_objects.fake_workout_repository import FakeWorkoutRepository
+
 
 class FakeUnitOfWork:
-    def __init__(self, tr_day_repo=None, workout_repo=None) -> None:
-        self.tr_day_repo = tr_day_repo
+    def __init__(
+        self,
+        workout_repo: FakeWorkoutRepository,
+        tr_day_repo: FakeTrainingDayRepository,
+    ) -> None:
         self.workout_repo = workout_repo
-        self.committed = False
+        self.tr_day_repo = tr_day_repo
 
     async def __aenter__(self) -> Self:
         return self
@@ -14,7 +22,7 @@ class FakeUnitOfWork:
         pass
 
     async def commit(self) -> None:
-        self.committed = True
+        pass
 
     async def rollback(self) -> None:
         pass

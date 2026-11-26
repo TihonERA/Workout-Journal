@@ -1,5 +1,6 @@
 import pytest
 
+from src.tests.unit.fake_objects.fake_unit_of_work import FakeUnitOfWork
 from src.tests.unit.fake_objects.fake_workout_repository import (
     FakeWorkoutRepository,
 )
@@ -12,8 +13,8 @@ from src.trainings.application.use_cases.workout.create_workout import (
 
 
 @pytest.fixture
-def use_case(workout_repo: FakeWorkoutRepository) -> CreateWorkoutUseCase:
-    return CreateWorkoutUseCase(workout_repo)
+def use_case(fake_uow: FakeUnitOfWork) -> CreateWorkoutUseCase:
+    return CreateWorkoutUseCase(fake_uow)
 
 
 async def test_create_success(
