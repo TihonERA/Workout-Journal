@@ -1,6 +1,4 @@
-
 from sqlalchemy import delete
-from sqlalchemy.exc import IntegrityError
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from src.history_analytics.domain.training_day_history import TrainingDayHistory
@@ -29,25 +27,17 @@ class TrainingDayHistoryRepository:
     async def create(
         self, training_day_history: TrainingDayHistory
     ) -> TrainingDayHistory:
-        try:
-            training_day_history_model = TrainingDayHistoryMapper.to_orm(
-                training_day_history
-            )
+        training_day_history_model = TrainingDayHistoryMapper.to_orm(
+            training_day_history
+        )
 
-            self.session.add(training_day_history_model)
-            await self.session.flush()
+        self.session.add(training_day_history_model)
+        await self.session.flush()
 
-            return TrainingDayHistoryMapper.to_domain(training_day_history_model)
-        except IntegrityError:
-            raise NotImplementedError("assHOLE")
+        return TrainingDayHistoryMapper.to_domain(training_day_history_model)
 
     async def delete(self, id: int) -> None:
-        try:
-            stmt = delete(TrainingDayHistoryModel).where(
-                TrainingDayHistoryModel.id == id
-            )
+        stmt = delete(TrainingDayHistoryModel).where(TrainingDayHistoryModel.id == id)
 
-            await self.session.execute(stmt)
-            await self.session.flush()
-        except IntegrityError:
-            raise NotImplementedError("pe")
+        await self.session.execute(stmt)
+        await self.session.flush()

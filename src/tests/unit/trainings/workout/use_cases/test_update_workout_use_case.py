@@ -2,7 +2,6 @@ from uuid import uuid4
 
 import pytest
 
-from src.tests.unit.fake_objects.fake_unit_of_work import FakeUnitOfWork
 from src.tests.unit.fake_objects.fake_workout_repository import (
     FakeWorkoutRepository,
 )
@@ -19,14 +18,9 @@ from src.trainings.domain.exceptions.workout_exceptions import (
 )
 
 
-@pytest.fixture
-def use_case(fake_uow: FakeUnitOfWork) -> UpdateWorkoutUseCase:
-    return UpdateWorkoutUseCase(fake_uow)
-
-
 async def test_success(
     workout_dto_factory: WorkoutDTOFactory,
-    use_case: UpdateWorkoutUseCase,
+    update_workout_use_case: UpdateWorkoutUseCase,
     workout_repo: FakeWorkoutRepository,
     workout_factory: WorkoutFactory,
 ) -> None:
@@ -45,7 +39,7 @@ async def test_success(
 
     assert command.name is not None
 
-    await use_case(command)
+    await update_workout_use_case(command)
 
     workout = await workout_repo.get(workout_id)
 
@@ -59,7 +53,7 @@ async def test_success(
 async def test_partial_name(
     workout_factory: WorkoutFactory,
     workout_dto_factory: WorkoutDTOFactory,
-    use_case: UpdateWorkoutUseCase,
+    update_workout_use_case: UpdateWorkoutUseCase,
     workout_repo: FakeWorkoutRepository,
 ) -> None:
     workout = await workout_factory.create_workout(description="ftestag")
@@ -71,7 +65,7 @@ async def test_partial_name(
         user_id=workout.user_id, workout_id=workout_id, name="n"
     )
 
-    await use_case(command)
+    await update_workout_use_case(command)
 
     updated_workout = await workout_repo.get(workout_id)
 
@@ -86,7 +80,7 @@ async def test_partial_name(
 async def test_partial_description(
     workout_factory: WorkoutFactory,
     workout_dto_factory: WorkoutDTOFactory,
-    use_case: UpdateWorkoutUseCase,
+    update_workout_use_case: UpdateWorkoutUseCase,
     workout_repo: FakeWorkoutRepository,
 ) -> None:
     workout = await workout_factory.create_workout(description="ftestag")
@@ -98,7 +92,7 @@ async def test_partial_description(
         user_id=workout.user_id, workout_id=workout_id, description="n"
     )
 
-    await use_case(command)
+    await update_workout_use_case(command)
 
     updated_workout = await workout_repo.get(workout_id)
 
@@ -113,7 +107,7 @@ async def test_partial_description(
 async def test_partial_public(
     workout_factory: WorkoutFactory,
     workout_dto_factory: WorkoutDTOFactory,
-    use_case: UpdateWorkoutUseCase,
+    update_workout_use_case: UpdateWorkoutUseCase,
     workout_repo: FakeWorkoutRepository,
 ) -> None:
     workout = await workout_factory.create_workout()
@@ -125,7 +119,7 @@ async def test_partial_public(
         user_id=workout.user_id, workout_id=workout_id, public=True
     )
 
-    await use_case(command)
+    await update_workout_use_case(command)
 
     updated_workout = await workout_repo.get(workout_id)
 
@@ -138,20 +132,21 @@ async def test_partial_public(
 
 
 async def test_not_found(
-    workout_dto_factory: WorkoutDTOFactory, use_case: UpdateWorkoutUseCase
+    workout_dto_factory: WorkoutDTOFactory,
+    update_workout_use_case: UpdateWorkoutUseCase,
 ) -> None:
     command = workout_dto_factory.make_update_workout_command(
         user_id=uuid4(), workout_id=-1
     )
 
     with pytest.raises(WorkoutNotFound):
-        await use_case(command)
+        await update_workout_use_case(command)
 
 
 async def test_access_denied(
     workout_repo: FakeWorkoutRepository,
     workout_dto_factory: WorkoutDTOFactory,
-    use_case: UpdateWorkoutUseCase,
+    update_workout_use_case: UpdateWorkoutUseCase,
     workout_factory: WorkoutFactory,
 ) -> None:
     workout = await workout_factory.create_workout()
@@ -168,7 +163,7 @@ async def test_access_denied(
     )
 
     with pytest.raises(WorkoutAccessDenied):
-        await use_case(command)
+        await update_workout_use_case(command)
 
     workout_after_update = await workout_repo.get(workout_id)
 

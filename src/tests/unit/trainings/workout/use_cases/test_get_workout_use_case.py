@@ -3,9 +3,6 @@ from uuid import uuid4
 import pytest
 
 from src.tests.unit.trainings.factories.workout_factories import WorkoutFactory
-from src.tests.unit.trainings.fake_objects.fake_workout_reader import (
-    FakeWorkoutReader,
-)
 from src.trainings.application.dto.workout import WorkoutReadDTO
 from src.trainings.application.use_cases.workout.get_workout import (
     GetWorkoutUseCase,
@@ -15,11 +12,6 @@ from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutNotFound,
 )
 from src.trainings.domain.workout_model import Workout
-
-
-@pytest.fixture
-def use_case(workout_reader: FakeWorkoutReader) -> GetWorkoutUseCase:
-    return GetWorkoutUseCase(workout_reader)
 
 
 def assert_same_workouts(
@@ -33,34 +25,34 @@ def assert_same_workouts(
 
 
 async def test_success(
-    workout_factory: WorkoutFactory, use_case: GetWorkoutUseCase
+    workout_factory: WorkoutFactory, get_workout_use_case: GetWorkoutUseCase
 ) -> None:
     workout = await workout_factory.create_workout()
     workout_id = workout.id
 
     assert workout_id is not None
 
-    fetched_workout = await use_case(workout.user_id, workout_id)
+    fetched_workout = await get_workout_use_case(workout.user_id, workout_id)
 
     assert fetched_workout is not None
 
     assert_same_workouts(workout, fetched_workout)
 
 
-async def test_not_found(use_case: GetWorkoutUseCase) -> None:
+async def test_not_found(get_workout_use_case: GetWorkoutUseCase) -> None:
     with pytest.raises(WorkoutNotFound):
-        await use_case(user_id=uuid4(), workout_id=-1)
+        await get_workout_use_case(user_id=uuid4(), workout_id=-1)
 
 
 async def test_read_public(
-    workout_factory: WorkoutFactory, use_case: GetWorkoutUseCase
+    workout_factory: WorkoutFactory, get_workout_use_case: GetWorkoutUseCase
 ) -> None:
     workout = await workout_factory.create_workout(public=True)
     workout_id = workout.id
 
     assert workout_id is not None
 
-    fetched_workout = await use_case(user_id=uuid4(), workout_id=workout_id)
+    fetched_workout = await get_workout_use_case(user_id=uuid4(), workout_id=workout_id)
 
     assert fetched_workout is not None
 
@@ -68,7 +60,7 @@ async def test_read_public(
 
 
 async def test_access_denied(
-    workout_factory: WorkoutFactory, use_case: GetWorkoutUseCase
+    workout_factory: WorkoutFactory, get_workout_use_case: GetWorkoutUseCase
 ) -> None:
     workout = await workout_factory.create_workout()
     workout_id = workout.id
@@ -76,4 +68,4 @@ async def test_access_denied(
     assert workout_id is not None
 
     with pytest.raises(WorkoutAccessDenied):
-        await use_case(user_id=uuid4(), workout_id=workout_id)
+        await get_workout_use_case(user_id=uuid4(), workout_id=workout_id)

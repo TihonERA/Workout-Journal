@@ -1,6 +1,3 @@
-import pytest
-
-from src.tests.unit.fake_objects.fake_unit_of_work import FakeUnitOfWork
 from src.tests.unit.fake_objects.fake_workout_repository import (
     FakeWorkoutRepository,
 )
@@ -12,19 +9,14 @@ from src.trainings.application.use_cases.workout.create_workout import (
 )
 
 
-@pytest.fixture
-def use_case(fake_uow: FakeUnitOfWork) -> CreateWorkoutUseCase:
-    return CreateWorkoutUseCase(fake_uow)
-
-
 async def test_create_success(
-    use_case: CreateWorkoutUseCase,
+    create_workout_use_case: CreateWorkoutUseCase,
     workout_dto_factory: WorkoutDTOFactory,
     workout_repo: FakeWorkoutRepository,
 ) -> None:
     command = workout_dto_factory.make_create_workout_command()
 
-    workout = await use_case(command)
+    workout = await create_workout_use_case(command)
 
     assert workout.id is not None
 
