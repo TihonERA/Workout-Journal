@@ -16,7 +16,6 @@ from src.trainings.application.decorators.caches.workout.get_workout import (
 from src.trainings.application.use_cases.workout.get_workout import GetWorkoutUseCase
 from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
-    WorkoutNotFound,
 )
 
 

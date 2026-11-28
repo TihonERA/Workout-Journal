@@ -1,5 +1,5 @@
-from faker import Faker
 import pytest
+from faker import Faker
 
 from src.tests.unit.fake_objects.fake_unit_of_work import FakeUnitOfWork
 from src.tests.unit.trainings.factories.workout_factories import WorkoutDTOFactory

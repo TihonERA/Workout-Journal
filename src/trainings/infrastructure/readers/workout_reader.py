@@ -10,7 +10,7 @@ class WorkoutReader:
     def __init__(self, session: AsyncSession) -> None:
         self.session = session
 
-    async def get_loaded(self, id: int) -> WorkoutReadDTO | None:
+    async def get(self, id: int) -> WorkoutReadDTO | None:
         workout = await self.session.get(
             WorkoutModel, id, options=[selectinload(WorkoutModel.training_days)]
         )
