@@ -135,8 +135,10 @@ async def test_not_found(
     workout_dto_factory: WorkoutDTOFactory,
     update_workout_use_case: UpdateWorkoutUseCase,
 ) -> None:
+    UNKNOWN_WORKOUT_ID = -1
+
     command = workout_dto_factory.make_update_workout_command(
-        user_id=uuid4(), workout_id=-1
+        user_id=uuid4(), workout_id=UNKNOWN_WORKOUT_ID
     )
 
     with pytest.raises(WorkoutNotFound):

@@ -1,6 +1,8 @@
+from faker import Faker
 import pytest
 
 from src.tests.unit.fake_objects.fake_unit_of_work import FakeUnitOfWork
+from src.tests.unit.trainings.factories.workout_factories import WorkoutDTOFactory
 from src.tests.unit.trainings.fake_objects.fake_workout_reader import FakeWorkoutReader
 from src.trainings.application.use_cases.workout.create_workout import (
     CreateWorkoutUseCase,
@@ -32,3 +34,8 @@ def get_workout_use_case(workout_reader: FakeWorkoutReader) -> GetWorkoutUseCase
 @pytest.fixture
 def update_workout_use_case(fake_uow: FakeUnitOfWork) -> UpdateWorkoutUseCase:
     return UpdateWorkoutUseCase(fake_uow)
+
+
+@pytest.fixture
+def workout_dto_factory(faker: Faker) -> WorkoutDTOFactory:
+    return WorkoutDTOFactory(faker)

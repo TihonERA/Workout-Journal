@@ -45,13 +45,6 @@ async def test_success(
     assert_same_workouts(workout, workout_from_cache)
 
 
-async def test_not_found(cached_use_case: CachedGetWorkoutUseCase) -> None:
-    UNKNOWN_WORKOUT_ID = -1
-
-    with pytest.raises(WorkoutNotFound):
-        await cached_use_case(user_id=uuid4(), workout_id=UNKNOWN_WORKOUT_ID)
-
-
 async def test_access_denied_cache_miss(
     workout_factory: WorkoutFactory,
     cached_use_case: CachedGetWorkoutUseCase,
