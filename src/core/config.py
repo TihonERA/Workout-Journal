@@ -1,7 +1,7 @@
 from functools import lru_cache
 from pathlib import Path
 
-from pydantic import Field, PostgresDsn, computed_field
+from pydantic import Field, PostgresDsn, RedisDsn, computed_field
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 CURRENT_DIR = Path(__file__).resolve().parent
@@ -16,6 +16,9 @@ class Settings(BaseSettings):
     POSTGRES_PASS: str = Field(default=...)
     POSTGRES_NAME: str = Field(default=...)
 
+    REDIS_HOST: str = Field(default=...)
+    REDIS_PORT: int = Field(default=...)
+
     @computed_field
     @property
     def POSTGRES_URL(self) -> PostgresDsn:
@@ -26,6 +29,13 @@ class Settings(BaseSettings):
             username=self.POSTGRES_USER,
             password=self.POSTGRES_PASS,
             path=self.POSTGRES_NAME,
+        )
+
+    @computed_field
+    @property
+    def REDIS_URL(self) -> RedisDsn:
+        return RedisDsn.build(
+            scheme="redis", host=self.REDIS_HOST, port=self.REDIS_PORT
         )
 
     model_config = SettingsConfigDict(env_file=ENV_FILE_PATH, env_file_encoding="utf-8")
