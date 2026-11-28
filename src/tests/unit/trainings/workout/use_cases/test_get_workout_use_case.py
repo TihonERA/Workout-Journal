@@ -3,7 +3,7 @@ from uuid import uuid4
 import pytest
 
 from src.tests.unit.trainings.factories.workout_factories import WorkoutFactory
-from src.trainings.application.dto.workout import WorkoutReadDTO
+from src.tests.unit.trainings.workout.helpers import assert_same_workouts
 from src.trainings.application.use_cases.workout.get_workout import (
     GetWorkoutUseCase,
 )
@@ -11,17 +11,6 @@ from src.trainings.domain.exceptions.workout_exceptions import (
     WorkoutAccessDenied,
     WorkoutNotFound,
 )
-from src.trainings.domain.workout_model import Workout
-
-
-def assert_same_workouts(
-    first_workout: Workout, second_workout: WorkoutReadDTO
-) -> None:
-    assert first_workout.id == second_workout.id
-    assert first_workout.user_id == second_workout.user_id
-    assert first_workout.name.value == second_workout.name
-    assert first_workout.description == second_workout.description
-    assert first_workout.public == second_workout.public
 
 
 async def test_success(
@@ -40,8 +29,10 @@ async def test_success(
 
 
 async def test_not_found(get_workout_use_case: GetWorkoutUseCase) -> None:
+    UNKNOWN_WORKOUT_ID = -1
+
     with pytest.raises(WorkoutNotFound):
-        await get_workout_use_case(user_id=uuid4(), workout_id=-1)
+        await get_workout_use_case(user_id=uuid4(), workout_id=UNKNOWN_WORKOUT_ID)
 
 
 async def test_read_public(

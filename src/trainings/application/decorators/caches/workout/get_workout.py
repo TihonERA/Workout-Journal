@@ -3,6 +3,7 @@ from uuid import UUID
 
 from src.trainings.application.dto.workout import WorkoutReadDTO
 from src.trainings.application.ports.workout import IGetWorkoutUseCase
+from src.trainings.domain.exceptions.workout_exceptions import WorkoutAccessDenied
 
 
 class IWorkoutCache(Protocol):
@@ -16,8 +17,13 @@ class CachedGetWorkoutUseCase:
         self._cache = cache
 
     async def __call__(self, user_id: UUID, workout_id: int) -> WorkoutReadDTO:
-        if workout := await self._cache.get(workout_id):
-            return workout
+        workout = await self._cache.get(workout_id)
+
+        if workout is not None:
+            if workout.public or workout.user_id == user_id:
+                return workout
+
+            raise WorkoutAccessDenied()
 
         workout = await self._use_case(user_id, workout_id)
 
